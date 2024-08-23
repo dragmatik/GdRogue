@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://c4mvcl5jc2jqr"]
+
+[ext_resource type="Texture2D" uid="uid://rtpdtlltvidm" path="res://Sprites/Effects/Blood.png" id="1_o40q6"]
+
+[sub_resource type="Gradient" id="Gradient_rcgju"]
+offsets = PackedFloat32Array(0, 0.450893, 0.522321, 1)
+colors = PackedColorArray(0.984314, 0, 0, 0, 0.877346, 8.56727e-06, 3.85046e-07, 1, 0.614171, 0.0758011, 0.0997679, 1, 0.717647, 0.0980392, 0.12549, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_o35uv"]
+gradient = SubResource("Gradient_rcgju")
+
+[sub_resource type="Curve" id="Curve_so7vw"]
+_data = [Vector2(0, 0.244186), 0.0, 0.0755817, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vmtjn"]
+curve = SubResource("Curve_so7vw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oqnqj"]
+lifetime_randomness = 0.8
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, 0, 0)
+spread = 150.0
+initial_velocity_min = 30.0
+initial_velocity_max = 45.0
+gravity = Vector3(0, 150, 0)
+linear_accel_min = 20.0
+linear_accel_max = 80.0
+scale_curve = SubResource("CurveTexture_vmtjn")
+color = Color(0.757675, 0.231682, 0, 1)
+color_ramp = SubResource("GradientTexture1D_o35uv")
+collision_mode = 2
+collision_use_scale = true
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_jqn61"]
+diffuse_texture = ExtResource("1_o40q6")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_r15bp"]
+polygon = PackedVector2Array(-23, 20, 24, 20, 24, 26, -23, 26)
+
+[node name="Blood" type="GPUParticles2D"]
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_oqnqj")
+texture = SubResource("CanvasTexture_jqn61")
+lifetime = 0.6
+explosiveness = 0.25
+randomness = 0.5
+collision_base_size = 0.0
+
+[node name="Test_occluder" type="LightOccluder2D" parent="."]
+visible = false
+occluder = SubResource("OccluderPolygon2D_r15bp")

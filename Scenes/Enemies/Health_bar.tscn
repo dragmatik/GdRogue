@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://caav3i30vocuh"]
+
+[ext_resource type="Texture2D" uid="uid://v7tpb20vbm2p" path="res://Interface/Frames/under.png" id="1_t3ya8"]
+[ext_resource type="Script" path="res://Scripts/Enemies/System/Heath_bar.gd" id="2_gbc74"]
+[ext_resource type="Texture2D" uid="uid://c4l8dwuohfw2r" path="res://Interface/Frames/over_3.png" id="3_fitco"]
+[ext_resource type="Texture2D" uid="uid://kksyntyoev2c" path="res://Interface/Frames/over.png" id="3_wfctx"]
+
+[node name="Health" type="CanvasLayer"]
+
+[node name="Heath_bar" type="TextureProgressBar" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -45.0
+offset_right = 45.0
+offset_bottom = 12.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 70.0
+nine_patch_stretch = true
+stretch_margin_left = 5
+stretch_margin_top = 5
+stretch_margin_right = 5
+stretch_margin_bottom = 5
+texture_under = ExtResource("1_t3ya8")
+texture_progress = ExtResource("1_t3ya8")
+tint_under = Color(0, 0, 0, 0.490196)
+tint_progress = Color(1, 0.437872, 0.420846, 1)
+script = ExtResource("2_gbc74")
+
+[node name="sub_bar" type="TextureProgressBar" parent="Heath_bar"]
+layout_mode = 1
+offset_right = 90.0
+offset_bottom = 12.0
+value = 50.0
+nine_patch_stretch = true
+stretch_margin_left = 5
+stretch_margin_top = 5
+stretch_margin_right = 5
+stretch_margin_bottom = 5
+texture_under = ExtResource("3_wfctx")
+texture_over = ExtResource("3_fitco")
+texture_progress = ExtResource("1_t3ya8")
+tint_under = Color(0.691357, 0.691357, 0.691357, 1)
+tint_over = Color(0.741385, 0.741385, 0.741385, 1)
+tint_progress = Color(0.664337, 0, 0.18003, 1)

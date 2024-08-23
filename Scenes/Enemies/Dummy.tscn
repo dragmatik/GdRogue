@@ -1,0 +1,174 @@
+[gd_scene load_steps=17 format=3 uid="uid://coaxwkfe7faya"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/En_Dummy/Dummy.gd" id="1_0q12y"]
+[ext_resource type="Script" path="res://Scripts/Enemies/System/Damage_handler.gd" id="2_e0hf2"]
+[ext_resource type="PackedScene" uid="uid://caav3i30vocuh" path="res://Scenes/Enemies/Health_bar.tscn" id="3_eooww"]
+[ext_resource type="Shader" path="res://Shaders/Flash.gdshader" id="4_hvm56"]
+[ext_resource type="Texture2D" uid="uid://b7fp0x5q1or1c" path="res://Sprites/Enemies/Dummy/Dummy.png" id="5_bokul"]
+[ext_resource type="Texture2D" uid="uid://ctndn0uhtlowv" path="res://Sprites/Enemies/Dummy/Dummy_n.png" id="6_y40bq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_13b8t"]
+resource_local_to_scene = true
+shader = ExtResource("4_hvm56")
+shader_parameter/Smooth = true
+shader_parameter/EnableOutline = false
+shader_parameter/width = 5.0
+shader_parameter/outline_color = Vector4(1, 0, 0, 0.05)
+shader_parameter/selection_color = Vector4(1, 1, 1, 1)
+shader_parameter/color_intensity = 0.0
+shader_parameter/pixel_size = 1
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_u1eoo"]
+diffuse_texture = ExtResource("5_bokul")
+normal_texture = ExtResource("6_y40bq")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2r4kg"]
+size = Vector2(18, 36)
+
+[sub_resource type="Animation" id="Animation_f2auy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_sjjjs"]
+resource_name = "en_hit"
+length = 0.33334
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11, 12]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8eb0m"]
+_data = {
+"RESET": SubResource("Animation_f2auy"),
+"en_hit": SubResource("Animation_sjjjs")
+}
+
+[sub_resource type="Animation" id="Animation_tacc7"]
+resource_name = "Hit_effect"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:material:shader_parameter/EnableOutline")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:material:shader_parameter/color_intensity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.5, 0.5, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_7sgm3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:material:shader_parameter/EnableOutline")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:material:shader_parameter/color_intensity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u07lw"]
+_data = {
+"Hit_effect": SubResource("Animation_tacc7"),
+"RESET": SubResource("Animation_7sgm3")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1ugl2"]
+radius = 22.0
+height = 44.0
+
+[node name="Dummy" type="Node2D"]
+
+[node name="Enemy" type="CharacterBody2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_0q12y")
+
+[node name="HP" type="Node2D" parent="Enemy"]
+position = Vector2(0, -22)
+script = ExtResource("2_e0hf2")
+
+[node name="Health" parent="Enemy/HP" instance=ExtResource("3_eooww")]
+
+[node name="Sprite" type="Sprite2D" parent="Enemy"]
+material = SubResource("ShaderMaterial_13b8t")
+scale = Vector2(1.5, 1.5)
+texture = SubResource("CanvasTexture_u1eoo")
+hframes = 8
+vframes = 3
+region_rect = Rect2(0, 0, 2960, 624)
+
+[node name="Collider" type="CollisionShape2D" parent="Enemy"]
+shape = SubResource("RectangleShape2D_2r4kg")
+debug_color = Color(2.45467e-06, 0.634294, 0.4307, 0.42)
+
+[node name="Animation" type="AnimationPlayer" parent="Enemy"]
+libraries = {
+"": SubResource("AnimationLibrary_8eb0m")
+}
+
+[node name="Filter" type="AnimationPlayer" parent="Enemy"]
+libraries = {
+"": SubResource("AnimationLibrary_u07lw")
+}
+
+[node name="Hitbox" type="Area2D" parent="Enemy"]
+collision_layer = 4
+collision_mask = 8
+
+[node name="Collider" type="CollisionShape2D" parent="Enemy/Hitbox"]
+shape = SubResource("CapsuleShape2D_1ugl2")
+debug_color = Color(0, 0.6, 0.701961, 0.156863)
+
+[connection signal="area_entered" from="Enemy/Hitbox" to="Enemy" method="_on_hitbox_area_entered"]

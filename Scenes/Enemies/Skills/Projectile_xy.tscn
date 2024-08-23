@@ -1,0 +1,118 @@
+[gd_scene load_steps=16 format=3 uid="uid://tok5vsv4olbt"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/En_Winged/W_Projectile.gd" id="1_3iwk6"]
+[ext_resource type="Texture2D" uid="uid://dayahl4klldau" path="res://Sprites/Skills/Fire_ball.png" id="2_tvejf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghvea"]
+atlas = ExtResource("2_tvejf")
+region = Rect2(0, 0, 117, 74)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5s2sa"]
+atlas = ExtResource("2_tvejf")
+region = Rect2(117, 0, 117, 74)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a43wi"]
+atlas = ExtResource("2_tvejf")
+region = Rect2(234, 0, 117, 74)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3v18"]
+atlas = ExtResource("2_tvejf")
+region = Rect2(351, 0, 117, 74)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvck8"]
+atlas = ExtResource("2_tvejf")
+region = Rect2(468, 0, 117, 74)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_it0ey"]
+atlas = ExtResource("2_tvejf")
+region = Rect2(0, 74, 117, 74)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pdlc"]
+atlas = ExtResource("2_tvejf")
+region = Rect2(117, 74, 117, 74)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijuim"]
+atlas = ExtResource("2_tvejf")
+region = Rect2(234, 74, 117, 74)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxkaj"]
+atlas = ExtResource("2_tvejf")
+region = Rect2(351, 74, 117, 74)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63j2b"]
+atlas = ExtResource("2_tvejf")
+region = Rect2(468, 74, 117, 74)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tw8vy"]
+atlas = ExtResource("2_tvejf")
+region = Rect2(585, 74, 117, 74)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ui4kx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghvea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5s2sa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a43wi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3v18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvck8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_it0ey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pdlc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijuim")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxkaj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63j2b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tw8vy")
+}],
+"loop": false,
+"name": &"expired",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_py7u1"]
+radius = 4.50694
+
+[node name="Projectile" type="Node2D"]
+script = ExtResource("1_3iwk6")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-4, 0)
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_ui4kx")
+
+[node name="Area" type="Area2D" parent="."]
+collision_layer = 16
+metadata/damage = 30
+
+[node name="Collision" type="CollisionShape2D" parent="Area"]
+shape = SubResource("CircleShape2D_py7u1")
+debug_color = Color(0.683339, 0, 0.197394, 0.42)
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="Area" to="." method="_on_area_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

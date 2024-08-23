@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://oukqrdaw7c26"]
+
+[resource]
+resource_local_to_scene = true
+font_color = Color(6.73831e-07, 0.908594, 0.271744, 1)
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.784314)

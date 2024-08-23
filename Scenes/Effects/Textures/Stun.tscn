@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://c42tv7idhpt1p"]
+
+[ext_resource type="Script" path="res://Scripts/Effects/Textures/Effect_continuous.gd" id="1_3adu6"]
+[ext_resource type="Texture2D" uid="uid://1dceej6qkiom" path="res://Sprites/Effects/stun.png" id="2_6oc81"]
+
+[sub_resource type="Animation" id="Animation_qhy0k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_bbmo7"]
+resource_name = "effect"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kyv3p"]
+_data = {
+"RESET": SubResource("Animation_qhy0k"),
+"effect": SubResource("Animation_bbmo7")
+}
+
+[node name="Stun" type="Node2D"]
+script = ExtResource("1_3adu6")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_6oc81")
+hframes = 5
+frame = 1
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kyv3p")
+}

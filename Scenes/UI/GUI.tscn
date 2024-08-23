@@ -1,0 +1,290 @@
+[gd_scene load_steps=15 format=3 uid="uid://dtxrcu58gojad"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Interface.gd" id="1_kie2f"]
+[ext_resource type="LabelSettings" uid="uid://blb3qrnyptmll" path="res://Interface/Label_UI.tres" id="4_xgfq8"]
+[ext_resource type="Texture2D" uid="uid://bbwfcvs0l3dja" path="res://Interface/Skills/release_v1.2-single_24.png" id="5_85eqc"]
+[ext_resource type="Texture2D" uid="uid://ckpsiw3idrwdk" path="res://Interface/UI/Under.png" id="5_vafj8"]
+[ext_resource type="Texture2D" uid="uid://b5qr54iptetjk" path="res://Interface/Skills/release_v1.2-single_99.png" id="7_20r6v"]
+[ext_resource type="Texture2D" uid="uid://c4l8dwuohfw2r" path="res://Interface/Frames/over_3.png" id="7_fmun6"]
+[ext_resource type="Texture2D" uid="uid://c4nm2a2vhlfq7" path="res://Sprites/Items/Gold.png" id="7_nwtsu"]
+[ext_resource type="Texture2D" uid="uid://d1oyc8rpjveuq" path="res://Interface/Frames/over_2.png" id="7_x1bbc"]
+[ext_resource type="Texture2D" uid="uid://cr6fucho4d2f6" path="res://Interface/Frames/3-2.png" id="8_jaw48"]
+[ext_resource type="Texture2D" uid="uid://kksyntyoev2c" path="res://Interface/Frames/over.png" id="8_sw5kw"]
+[ext_resource type="Texture2D" uid="uid://0pxlubwyth8b" path="res://Interface/Skills/release_v1.2-single_17.png" id="9_87vod"]
+[ext_resource type="Texture2D" uid="uid://v7tpb20vbm2p" path="res://Interface/Frames/under.png" id="9_x0cr3"]
+[ext_resource type="Texture2D" uid="uid://bhg5rvd2gm472" path="res://Interface/Skills/release_v1.2-single_11.png" id="10_ptqiy"]
+[ext_resource type="Texture2D" uid="uid://jhcfco44ftkg" path="res://Interface/Skills/release_v1.2-single_16.png" id="11_ifa3h"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_kie2f")
+
+[node name="Health_bar" type="TextureProgressBar" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 66.0
+offset_top = -82.0
+offset_right = 183.0
+offset_bottom = -72.0
+grow_vertical = 0
+scale = Vector2(3.5, 3.5)
+value = 50.0
+nine_patch_stretch = true
+stretch_margin_left = 5
+stretch_margin_top = 5
+stretch_margin_right = 5
+stretch_margin_bottom = 5
+texture_under = ExtResource("9_x0cr3")
+texture_over = ExtResource("8_sw5kw")
+texture_progress = ExtResource("9_x0cr3")
+tint_under = Color(0.169245, 0.169245, 0.169245, 1)
+tint_over = Color(1, 1, 0.811765, 1)
+tint_progress = Color(0.812728, 0, 0.223204, 1)
+
+[node name="placeholder" type="Control" parent="Health_bar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.5
+offset_top = -5.0
+offset_right = 13.5
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Health_value" type="Label" parent="."]
+offset_left = 66.0
+offset_top = 998.0
+offset_right = 82.0
+offset_bottom = 1032.0
+text = "0"
+label_settings = ExtResource("4_xgfq8")
+vertical_alignment = 1
+
+[node name="cooldown_bar" type="TextureProgressBar" parent="."]
+offset_left = 67.0
+offset_top = 892.0
+offset_right = 97.0
+offset_bottom = 922.0
+scale = Vector2(3, 3)
+value = 50.0
+fill_mode = 5
+nine_patch_stretch = true
+stretch_margin_left = 3
+stretch_margin_top = 3
+stretch_margin_right = 3
+stretch_margin_bottom = 3
+texture_under = ExtResource("5_vafj8")
+texture_progress = ExtResource("5_vafj8")
+tint_under = Color(0.281187, 0.281187, 0.281187, 0.705882)
+tint_over = Color(0.192587, 0.167053, 0.225026, 1)
+tint_progress = Color(1, 0.607843, 0.552941, 0.694118)
+
+[node name="Icons" type="PanelContainer" parent="cooldown_bar"]
+self_modulate = Color(1, 1, 1, 0.333333)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Buff" type="Sprite2D" parent="cooldown_bar/Icons"]
+visible = false
+position = Vector2(12, 12)
+scale = Vector2(1.22222, 1.22222)
+texture = ExtResource("5_85eqc")
+
+[node name="Swift" type="Sprite2D" parent="cooldown_bar/Icons"]
+visible = false
+position = Vector2(12, 12)
+scale = Vector2(1.22222, 1.22222)
+texture = ExtResource("7_20r6v")
+
+[node name="Top" type="TextureProgressBar" parent="cooldown_bar"]
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 0.0
+nine_patch_stretch = true
+stretch_margin_left = 5
+stretch_margin_top = 5
+stretch_margin_right = 5
+stretch_margin_bottom = 5
+texture_over = ExtResource("7_fmun6")
+
+[node name="Frame" type="TextureProgressBar" parent="cooldown_bar"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 31.0
+offset_bottom = 31.0
+max_value = 0.0
+nine_patch_stretch = true
+stretch_margin_left = 5
+stretch_margin_top = 5
+stretch_margin_right = 5
+stretch_margin_bottom = 5
+texture_under = ExtResource("7_x1bbc")
+texture_over = ExtResource("8_sw5kw")
+
+[node name="duration_bar" type="TextureProgressBar" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -896.0
+offset_top = 322.0
+offset_right = -864.0
+offset_bottom = 332.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+value = 50.0
+nine_patch_stretch = true
+stretch_margin_left = 5
+stretch_margin_top = 5
+stretch_margin_right = 5
+stretch_margin_bottom = 5
+texture_under = ExtResource("9_x0cr3")
+texture_over = ExtResource("8_sw5kw")
+texture_progress = ExtResource("9_x0cr3")
+tint_under = Color(0.223103, 0.223103, 0.223103, 0.705882)
+tint_progress = Color(0.344418, 0.402661, 0.732713, 1)
+
+[node name="Abilities" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Ability_Icons" type="TextureProgressBar" parent="Abilities"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 148.0
+offset_top = 908.0
+offset_right = 167.0
+offset_bottom = 927.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+max_value = 0.0
+nine_patch_stretch = true
+stretch_margin_left = 5
+stretch_margin_top = 5
+stretch_margin_right = 5
+stretch_margin_bottom = 5
+texture_under = ExtResource("9_x0cr3")
+texture_over = ExtResource("8_sw5kw")
+texture_progress = ExtResource("7_x1bbc")
+tint_under = Color(0.223529, 0.223529, 0.223529, 0.72549)
+tint_progress = Color(1, 0.504618, 0.602071, 1)
+
+[node name="T" type="Sprite2D" parent="Abilities/Ability_Icons"]
+visible = false
+position = Vector2(9.5, 9.5)
+scale = Vector2(0.652778, 0.652778)
+texture = ExtResource("9_87vod")
+
+[node name="B" type="Sprite2D" parent="Abilities/Ability_Icons"]
+visible = false
+position = Vector2(9.5, 9.5)
+scale = Vector2(0.652778, 0.652778)
+texture = ExtResource("10_ptqiy")
+
+[node name="T2" type="Sprite2D" parent="Abilities/Ability_Icons"]
+visible = false
+position = Vector2(9.5, 9.5)
+scale = Vector2(0.652778, 0.652778)
+texture = ExtResource("11_ifa3h")
+
+[node name="Frame" type="TextureProgressBar" parent="Abilities"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 148.0
+offset_top = 908.0
+offset_right = 167.0
+offset_bottom = 927.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+max_value = 0.0
+nine_patch_stretch = true
+stretch_margin_left = 5
+stretch_margin_top = 5
+stretch_margin_right = 5
+stretch_margin_bottom = 5
+texture_progress = ExtResource("7_x1bbc")
+tint_under = Color(0.223103, 0.223103, 0.223103, 0.705882)
+tint_progress = Color(1, 0.504618, 0.602071, 1)
+
+[node name="Coins" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 473.0
+offset_top = 457.0
+offset_right = 674.0
+offset_bottom = 487.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "99999
+"
+label_settings = ExtResource("4_xgfq8")
+horizontal_alignment = 2
+vertical_alignment = 3
+
+[node name="Coin" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 0.294118, 1)
+position = Vector2(1655, 1012)
+scale = Vector2(3, 3)
+texture = ExtResource("7_nwtsu")
+hframes = 5
+
+[node name="Map" type="PanelContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -235.0
+offset_top = -210.0
+offset_right = -64.0
+offset_bottom = -39.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Frame" type="TextureRect" parent="Map"]
+layout_mode = 2
+texture = ExtResource("8_jaw48")
+expand_mode = 1

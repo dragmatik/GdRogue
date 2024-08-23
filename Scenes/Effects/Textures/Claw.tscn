@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://b7e2gms84sqk4"]
+
+[ext_resource type="Script" path="res://Scripts/Effects/Textures/Effect_inst.gd" id="1_hni3p"]
+[ext_resource type="Texture2D" uid="uid://b4407sp86bqro" path="res://Sprites/Skills/Claw.png" id="2_3nrw5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74onu"]
+atlas = ExtResource("2_3nrw5")
+region = Rect2(0, 102, 64, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6ngu"]
+atlas = ExtResource("2_3nrw5")
+region = Rect2(0, 153, 64, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82ixm"]
+atlas = ExtResource("2_3nrw5")
+region = Rect2(0, 204, 64, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eovab"]
+atlas = ExtResource("2_3nrw5")
+region = Rect2(0, 51, 64, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_upoqs"]
+atlas = ExtResource("2_3nrw5")
+region = Rect2(0, 0, 64, 51)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j3mkx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74onu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6ngu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82ixm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eovab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_upoqs")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="Attack" type="Node2D"]
+script = ExtResource("1_hni3p")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(4, 6)
+sprite_frames = SubResource("SpriteFrames_j3mkx")
