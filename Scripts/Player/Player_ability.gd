@@ -13,18 +13,18 @@ func _process(delta: float) -> void:
 	# Update ability state
 	if current_ability:
 		current_ability.update(current_time)
-		# Passive abilities
+		# Passive Abilities
+		if current_ability.name == "force_field":
+			Abilities_node.force_field_on()
 
 # Callable function
 func skills() -> void:
 	if current_ability and not current_ability.is_on_cooldown:
 		# Activate the ability
 		if current_ability.activate(current_time):
-			# Trigger the ability effect
+			# Instant Abilities
 			if current_ability.name == "fire_ball":
 				Abilities_node.fire_ball_on()
-			elif current_ability.name == "force_field":
-				Abilities_node.force_field_on()
 
 # Get remaining cooldown of the current skill
 func get_remaining_cooldown() -> float:

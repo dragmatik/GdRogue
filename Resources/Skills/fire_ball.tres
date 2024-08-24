@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_g4stp")
 name = "fire_ball"
-cooldown = 10.0
-duration = 5.0
+cooldown = 8.0
+duration = 6.0

@@ -966,6 +966,12 @@ script = ExtResource("11_843ot")
 [node name="Power_ups" type="Node2D" parent="."]
 script = ExtResource("7_v5mpe")
 
+[node name="Ability_timer" type="Timer" parent="Power_ups"]
+one_shot = true
+
+[node name="Emit_free" type="Timer" parent="Power_ups"]
+one_shot = true
+
 [node name="Emitters" type="Node2D" parent="."]
 
 [node name="Emitter_1" type="Node2D" parent="Emitters"]
@@ -1012,5 +1018,7 @@ visible = false
 [connection signal="timeout" from="Attacking/Combo_reset" to="Attacking" method="_on_combo_reset_timeout"]
 [connection signal="area_entered" from="Blocking/Shield" to="Blocking" method="_on_shield_area_entered"]
 [connection signal="timeout" from="Blocking/Block" to="Blocking" method="_on_block_timeout"]
+[connection signal="timeout" from="Power_ups/Ability_timer" to="Power_ups" method="_on_ability_timer_timeout"]
+[connection signal="timeout" from="Power_ups/Emit_free" to="Power_ups" method="_on_emit_free_timeout"]
 [connection signal="area_entered" from="Hitbox" to="HP" method="_on_player_hitbox_area_entered"]
 [connection signal="area_entered" from="Hanger" to="." method="_on_hanger_area_entered"]
