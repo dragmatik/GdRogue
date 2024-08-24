@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1qtftwf2rgl1"
-path="res://.godot/imported/Water_ball.png-71199b73b8fe47b20df27b15783f8f37.ctex"
+uid="uid://cevh4qp46n2tb"
+path="res://.godot/imported/Thunder_strike.png-657d5eabc28b0d0cebb9fabf467482b6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Skills/Water_ball.png"
-dest_files=["res://.godot/imported/Water_ball.png-71199b73b8fe47b20df27b15783f8f37.ctex"]
+source_file="res://Sprites/Powers/Thunder_strike.png"
+dest_files=["res://.godot/imported/Thunder_strike.png-657d5eabc28b0d0cebb9fabf467482b6.ctex"]
 
 [params]
 

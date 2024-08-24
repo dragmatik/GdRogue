@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bkevtwkeu3vsc"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/En_Mage/M_Spell.gd" id="1_83oax"]
-[ext_resource type="Texture2D" uid="uid://cevh4qp46n2tb" path="res://Sprites/Skills/Thunder_strike.png" id="2_ondby"]
+[ext_resource type="Texture2D" uid="uid://cevh4qp46n2tb" path="res://Sprites/Powers/Thunder_strike.png" id="2_ondby"]
 [ext_resource type="Texture2D" uid="uid://bx6v3xo8gvwtt" path="res://Sprites/Environment/light.png" id="3_vmpu5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4a5fp"]

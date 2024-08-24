@@ -52,7 +52,7 @@ var dust_timer: float = 0.0
 @onready var attack_collider: CollisionShape2D = $Attacking/Slash/Collider
 @onready var emitter_1: Node2D = $Emitters/Emitter_1
 @onready var emitter_2: Node2D = $Emitters/Emitter_2
-@onready var skill_node: Node2D = $Skills
+@onready var Ability_node: Node2D = $Ability
 @onready var hitbox_collider: CollisionShape2D = $Hitbox/Collider
 @onready var hanger: Area2D = $Hanger
 
@@ -137,7 +137,7 @@ func movement(delta: float) -> void:
 
 	# Handle Power ups
 	if Input.is_action_just_pressed("ui_special"):
-		skill_node.skills()
+		Ability_node.skills()
 
 	if is_sliding:
 		# Slide movement

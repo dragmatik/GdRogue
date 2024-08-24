@@ -68,12 +68,12 @@ item_desc = "Restores a portion of your health (50)."
 item_icon = ExtResource("3_05avw")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(0, -5.55556)
-scale = Vector2(1.01667, 0.983333)
+position = Vector2(0, -7.00872)
+scale = Vector2(0.994869, 1.00513)
 texture = ExtResource("1_xju75")
 hframes = 5
 vframes = 3
-frame = 2
+frame = 9
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite")

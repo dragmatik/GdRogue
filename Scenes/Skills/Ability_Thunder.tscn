@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://bxvmx3hfppyqq"]
 
 [ext_resource type="Script" path="res://Scripts/Effects/Textures/Effect_inst.gd" id="1_kpyiu"]
-[ext_resource type="Texture2D" uid="uid://dd2qyjcn606u6" path="res://Sprites/Skills/Thunder_hit.png" id="2_nak23"]
+[ext_resource type="Texture2D" uid="uid://dd2qyjcn606u6" path="res://Sprites/Powers/Thunder_hit.png" id="2_nak23"]
 [ext_resource type="Texture2D" uid="uid://bx6v3xo8gvwtt" path="res://Sprites/Environment/light.png" id="3_fla5w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tdhjw"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://dxk87kjhu7oou"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/En_Ranger/R_Projectile.gd" id="1_j4ghr"]
-[ext_resource type="Texture2D" uid="uid://1qtftwf2rgl1" path="res://Sprites/Skills/Water_ball.png" id="2_82c2f"]
+[ext_resource type="Texture2D" uid="uid://1qtftwf2rgl1" path="res://Sprites/Powers/Water_ball.png" id="2_82c2f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tvdrl"]
 atlas = ExtResource("2_82c2f")

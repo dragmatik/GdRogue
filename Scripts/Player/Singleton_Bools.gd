@@ -28,5 +28,7 @@ var Is_Bleed: bool = false
 var Bleed_damage: int = 10
 
 # Skills
-var Is_ability_1: bool = false
-var Is_ability_2: bool = false
+var Is_fire_ball: bool = false
+var Fire_ball_damage: int = 45
+
+var Is_force_field: bool = false

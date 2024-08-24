@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Equipment" load_steps=3 format=3 uid="uid://dp374evqpxepu"]
 
-[ext_resource type="Script" path="res://Scripts/Equipment/Equip_data.gd" id="1_udy7m"]
+[ext_resource type="Script" path="res://Resources/Equip_class.gd" id="1_udy7m"]
 [ext_resource type="Texture2D" uid="uid://j1mvr2h6jpqv" path="res://Sprites/Equipment/weapon_2.png" id="2_gptit"]
 
 [resource]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4407sp86bqro"
-path="res://.godot/imported/Claw.png-7fdc24f8495e00499b38ac2a81dbd9fd.ctex"
+uid="uid://cu2bg4g45bsp1"
+path="res://.godot/imported/empty_circle.png-414da2022d0e583afb0cb41f8d2c1dab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Skills/Claw.png"
-dest_files=["res://.godot/imported/Claw.png-7fdc24f8495e00499b38ac2a81dbd9fd.ctex"]
+source_file="res://Sprites/Powers/empty_circle.png"
+dest_files=["res://.godot/imported/empty_circle.png-414da2022d0e583afb0cb41f8d2c1dab.ctex"]
 
 [params]
 

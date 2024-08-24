@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cevh4qp46n2tb"
-path="res://.godot/imported/Thunder_strike.png-0ed0bebe292b6d5f2dda67e373896aa0.ctex"
+uid="uid://dd2qyjcn606u6"
+path="res://.godot/imported/Thunder_hit.png-8c9194bca8702754b6936d1c39e32015.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Skills/Thunder_strike.png"
-dest_files=["res://.godot/imported/Thunder_strike.png-0ed0bebe292b6d5f2dda67e373896aa0.ctex"]
+source_file="res://Sprites/Powers/Thunder_hit.png"
+dest_files=["res://.godot/imported/Thunder_hit.png-8c9194bca8702754b6936d1c39e32015.ctex"]
 
 [params]
 

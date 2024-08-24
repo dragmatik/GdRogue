@@ -77,12 +77,14 @@ func _on_attacker_det_body_exited(_body):
 		else:
 			current_state = enemy_state.IDLE  # Otherwise, go back to idle state
 
-func _on_hitbox_area_entered(_area):
-	$HP.handle_damage()
+func _process(_delta: float) -> void:
 	if $HP.enemy_health <= 0:
 		enemy_is_dead = true
 		current_state = enemy_state.DEAD  # Transition to death state
-	else:
+
+func _on_hitbox_area_entered(area):
+	$HP.handle_damage(area)
+	if not enemy_is_dead:
 		if not got_hit and not $States/Stun_state.is_stunned:
 			got_hit = true  # get hit only once so you don't spam the enemy
 			current_state = enemy_state.HIT  # Transition to hit state

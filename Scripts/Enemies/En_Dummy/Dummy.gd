@@ -32,9 +32,9 @@ func hit_enemy() -> void:
 	await animation_node.animation_finished
 	current_state = enemy_state.IDLE
 
-func _on_hitbox_area_entered(_area: Area2D) -> void:
+func _on_hitbox_area_entered(area: Area2D) -> void:
 	# Handle damage
-	health_node.handle_damage()
+	health_node.handle_damage(area)
 	current_state = enemy_state.HIT
 	if health_node.enemy_health <= 0:
 		health_node.enemy_health = 1000

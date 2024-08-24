@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b7vtim1fty23a"
-path="res://.godot/imported/Earth_projectile.png-2b99c9c1d9a58d6da58c7719c30a49d4.ctex"
+path="res://.godot/imported/Earth_projectile.png-86066e41e974d953cb4673bf7fa621ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Skills/Earth_projectile.png"
-dest_files=["res://.godot/imported/Earth_projectile.png-2b99c9c1d9a58d6da58c7719c30a49d4.ctex"]
+source_file="res://Sprites/Powers/Earth_projectile.png"
+dest_files=["res://.godot/imported/Earth_projectile.png-86066e41e974d953cb4673bf7fa621ce.ctex"]
 
 [params]
 

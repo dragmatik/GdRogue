@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/Player_melee.gd" id="4_xjvng"]
 [ext_resource type="Shader" path="res://Shaders/Flash.gdshader" id="5_cxypv"]
 [ext_resource type="Script" path="res://Scripts/Player/Player_shield.gd" id="5_i1lc1"]
-[ext_resource type="Script" path="res://Scripts/Player/Player_buffs.gd" id="7_v5mpe"]
+[ext_resource type="Script" path="res://Scripts/Player/Player_Power_ups.gd" id="7_v5mpe"]
 [ext_resource type="Script" path="res://Scripts/Player/Player_ability.gd" id="11_843ot"]
 [ext_resource type="PackedScene" uid="uid://dtxrcu58gojad" path="res://Scenes/UI/GUI.tscn" id="11_wg6jn"]
 [ext_resource type="PackedScene" uid="uid://jcik2dblgtim" path="res://Scenes/UI/Options.tscn" id="13_klct1"]
@@ -927,9 +927,6 @@ collision_mask = 64
 shape = SubResource("CircleShape2D_wf0ia")
 debug_color = Color(0.223529, 0.607843, 0.552941, 0.172549)
 
-[node name="Buffs" type="Node2D" parent="."]
-script = ExtResource("7_v5mpe")
-
 [node name="Curses" type="Node2D" parent="."]
 script = ExtResource("3_ccwwm")
 
@@ -963,8 +960,11 @@ debug_color = Color(0.996078, 0.65098, 0.113725, 0.145098)
 [node name="Block" type="Timer" parent="Blocking"]
 one_shot = true
 
-[node name="Skills" type="Node2D" parent="."]
+[node name="Ability" type="Node2D" parent="."]
 script = ExtResource("11_843ot")
+
+[node name="Power_ups" type="Node2D" parent="."]
+script = ExtResource("7_v5mpe")
 
 [node name="Emitters" type="Node2D" parent="."]
 

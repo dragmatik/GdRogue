@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://tok5vsv4olbt"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/En_Winged/W_Projectile.gd" id="1_3iwk6"]
-[ext_resource type="Texture2D" uid="uid://dayahl4klldau" path="res://Sprites/Skills/Fire_ball.png" id="2_tvejf"]
+[ext_resource type="Texture2D" uid="uid://dayahl4klldau" path="res://Sprites/Powers/Fire_ball.png" id="2_tvejf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ghvea"]
 atlas = ExtResource("2_tvejf")

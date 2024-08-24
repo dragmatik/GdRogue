@@ -24,18 +24,15 @@ func _on_c_toggled(toggled_on: bool) -> void:
 		SingletonBools.Is_Bolt = false
 		$"../../../Abilities/Ability_Icons/T2".visible = false
 
-func _on_d_toggled(toggled_on: bool) -> void:
-	if toggled_on:
-		SingletonBools.Is_ability_1 = true
-		$"../../../cooldown_bar/Icons/Swift".visible = true
-	else:
-		SingletonBools.Is_ability_1 = false
-		$"../../../cooldown_bar/Icons/Swift".visible = false
+@onready var fire_ball: Ability = preload("res://Resources/Skills/fire_ball.tres")
+@onready var force_field: Ability = preload("res://Resources/Skills/force_field.tres")
 
-func _on_e_toggled(toggled_on: bool) -> void:
-	if toggled_on:
-		SingletonBools.Is_ability_2 = true
-		$"../../../cooldown_bar/Icons/Buff".visible = true
-	else:
-		SingletonBools.Is_ability_2 = false
-		$"../../../cooldown_bar/Icons/Buff".visible = false
+func _on_d_pressed() -> void:
+	$"../../../cooldown_bar/Icons/Swift".visible = true
+	$"../../../cooldown_bar/Icons/Buff".visible = false
+	$"../../../../Ability".current_ability = fire_ball
+
+func _on_e_pressed() -> void:
+	$"../../../cooldown_bar/Icons/Buff".visible = true
+	$"../../../cooldown_bar/Icons/Swift".visible = false
+	$"../../../../Ability".current_ability = force_field

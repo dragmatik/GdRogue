@@ -11,7 +11,7 @@ extends Node
 @onready var Coins_Label: Label = $Coins
 @onready var Options_Panel: Control = $Options
 @onready var Skill_Icons: PanelContainer = $cooldown_bar/Icons
-@onready var Skills: Node2D = $"../Skills"
+@onready var Ability_node: Node2D = $"../Ability"
 
 func _ready() -> void:
 	Health_Bar.max_value = Health_Max
@@ -37,8 +37,8 @@ func _process(_delta: float) -> void:
 		Health_Value_Label.global_position = Label_holder.global_position
 	
 	# Skill cooldown timer
-	var cooldown: float = Skills.get_remaining_cooldown()
-	var cooldown_time: float = Skills.get_cooldown_value() # get cooldown max value to subtract it
+	var cooldown: float = Ability_node.get_remaining_cooldown()
+	var cooldown_time: float = Ability_node.get_cooldown_value() # get cooldown max value to subtract it
 	Cooldown_Bar.value = cooldown * Cooldown_Bar.max_value / cooldown_time
 	# Unfocus the skill icon during cooldown
 	if Cooldown_Bar.value != 0:
@@ -47,6 +47,6 @@ func _process(_delta: float) -> void:
 		Skill_Icons.modulate = Color(1, 1, 1, 1)
 	
 	# Skill duration timer
-	var duration: float = Skills.get_remaining_duration()
-	var duration_time: float = Skills.get_duration_value() # get duration max value to subtract it
+	var duration: float = Ability_node.get_remaining_duration()
+	var duration_time: float = Ability_node.get_duration_value() # get duration max value to subtract it
 	Duration_Bar.value = duration * Duration_Bar.max_value / duration_time

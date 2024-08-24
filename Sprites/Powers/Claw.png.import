@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cds5hdf4152e6"
-path="res://.godot/imported/Thunder_hit_2.png-f26fce4130faeb68c9dd5adedf7eb963.ctex"
+uid="uid://b4407sp86bqro"
+path="res://.godot/imported/Claw.png-f348133880e3343e3171908e35de12b8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Skills/Thunder_hit_2.png"
-dest_files=["res://.godot/imported/Thunder_hit_2.png-f26fce4130faeb68c9dd5adedf7eb963.ctex"]
+source_file="res://Sprites/Powers/Claw.png"
+dest_files=["res://.godot/imported/Claw.png-f348133880e3343e3171908e35de12b8.ctex"]
 
 [params]
 

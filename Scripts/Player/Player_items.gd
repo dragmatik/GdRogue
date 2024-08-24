@@ -1,6 +1,6 @@
 extends Node
 
-@onready var buffs: Node2D = $"../Buffs"
+@onready var Upgrades_node: Node2D = $"../Power_ups"
 
 # Bools
 var health_recover: bool = false
@@ -9,9 +9,9 @@ var attack_increase: bool = false
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_interact"):
 		if health_recover:
-			buffs._recover_hp_value()
+			Upgrades_node._recover_hp_value()
 		elif attack_increase:
-			buffs._attack_up_percentage()
+			Upgrades_node._attack_up_percentage()
 
 func _on_collector_area_entered(area: Area2D) -> void:
 	if area.name == "Coin":
