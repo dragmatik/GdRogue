@@ -24,8 +24,8 @@ func _on_c_toggled(toggled_on: bool) -> void:
 
 func _on_d_pressed() -> void:
 	ability_node.current_ability = fire_ball
-	SingletonBools.Is_Fire_ball = true
+	SingletonBools.set_active_ability("Ab_Is_Fire_ball")
 
 func _on_e_pressed() -> void:
 	ability_node.current_ability = force_field
-	SingletonBools.Is_Force_field = true
+	SingletonBools.set_active_ability("Ab_Is_Force_field")

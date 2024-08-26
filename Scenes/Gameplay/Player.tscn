@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://bfaxhjpiym61g"]
+[gd_scene load_steps=55 format=3 uid="uid://bfaxhjpiym61g"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player_Controller.gd" id="1_lkusj"]
 [ext_resource type="Script" path="res://Scripts/Player/Get_items.gd" id="2_dnb1c"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://b7r02dm64auyn" path="res://Scenes/Gameplay/Camera.tscn" id="3_6yvgn"]
 [ext_resource type="Script" path="res://Scripts/Player/Player_Curses.gd" id="3_ccwwm"]
 [ext_resource type="Texture2D" uid="uid://s3ekiqex3645" path="res://Sprites/Player/Player.png" id="3_hmrpb"]
-[ext_resource type="Texture2D" uid="uid://b5axrbd6ayqt3" path="res://Sprites/Player/Player_n.png" id="4_4jqbw"]
 [ext_resource type="Script" path="res://Scripts/Player/Player_Primary.gd" id="4_xjvng"]
 [ext_resource type="Shader" path="res://Shaders/Flash.gdshader" id="5_cxypv"]
 [ext_resource type="Script" path="res://Scripts/Player/Player_Secondary.gd" id="5_i1lc1"]
@@ -26,10 +25,6 @@ shader_parameter/outline_color = Vector4(0.5, 0.5, 0.2, 0.1)
 shader_parameter/selection_color = Vector4(1, 1, 1, 1)
 shader_parameter/color_intensity = 0.0
 shader_parameter/pixel_size = 1
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_7lm1b"]
-diffuse_texture = ExtResource("3_hmrpb")
-normal_texture = ExtResource("4_4jqbw")
 
 [sub_resource type="Animation" id="Animation_410vu"]
 length = 0.001
@@ -880,7 +875,7 @@ script = ExtResource("1_lkusj")
 material = SubResource("ShaderMaterial_w6ngs")
 position = Vector2(-9.53674e-07, -21)
 scale = Vector2(0.8, 0.8)
-texture = SubResource("CanvasTexture_7lm1b")
+texture = ExtResource("3_hmrpb")
 hframes = 8
 vframes = 40
 
@@ -963,11 +958,11 @@ collision_mask = 64
 shape = SubResource("CircleShape2D_wf0ia")
 debug_color = Color(0.223529, 0.607843, 0.552941, 0.172549)
 
-[node name="Items" type="Node2D" parent="."]
-script = ExtResource("11_3i7ak")
-
 [node name="Get_abilities" type="Node2D" parent="."]
 script = ExtResource("11_843ot")
+
+[node name="Items" type="Node2D" parent="."]
+script = ExtResource("11_3i7ak")
 
 [node name="Abilities" type="Node2D" parent="."]
 script = ExtResource("7_v5mpe")
@@ -990,7 +985,6 @@ position = Vector2(0, 25)
 position = Vector2(10, 25)
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, 5.8)
 shape = SubResource("RectangleShape2D_o6xqy")
 debug_color = Color(0.568627, 0.435294, 0.890196, 0.121569)

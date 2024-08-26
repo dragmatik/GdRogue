@@ -102,14 +102,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -12.0
-offset_top = -12.0
-offset_right = 12.0
-offset_bottom = 12.0
+offset_left = -14.0
+offset_top = -14.0
+offset_right = 14.0
+offset_bottom = 14.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Icon_a" type="TextureRect" parent="Cooldown_bar/Container"]
+[node name="Icon_ability" type="TextureRect" parent="Cooldown_bar/Container"]
 unique_name_in_owner = true
 layout_mode = 2
 
@@ -354,6 +354,76 @@ layout_mode = 2
 expand_mode = 1
 
 [node name="Front" type="TextureProgressBar" parent="Icon_manager/Cont_3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 148.0
+offset_top = 908.0
+offset_right = 167.0
+offset_bottom = 927.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+max_value = 0.0
+nine_patch_stretch = true
+stretch_margin_left = 5
+stretch_margin_top = 5
+stretch_margin_right = 5
+stretch_margin_bottom = 5
+texture_progress = ExtResource("7_x1bbc")
+tint_under = Color(0.223103, 0.223103, 0.223103, 0.705882)
+tint_progress = Color(1, 0.504618, 0.602071, 1)
+
+[node name="Cont_4" type="Control" parent="Icon_manager"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -104.0
+offset_top = -334.0
+offset_right = -64.0
+offset_bottom = -294.0
+
+[node name="Back" type="TextureProgressBar" parent="Icon_manager/Cont_4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 148.0
+offset_top = 908.0
+offset_right = 167.0
+offset_bottom = 927.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+max_value = 0.0
+nine_patch_stretch = true
+stretch_margin_left = 5
+stretch_margin_top = 5
+stretch_margin_right = 5
+stretch_margin_bottom = 5
+texture_under = ExtResource("9_x0cr3")
+texture_over = ExtResource("8_sw5kw")
+texture_progress = ExtResource("7_x1bbc")
+tint_under = Color(0.223529, 0.223529, 0.223529, 0.72549)
+tint_progress = Color(1, 0.504618, 0.602071, 1)
+
+[node name="Container" type="PanelContainer" parent="Icon_manager/Cont_4"]
+layout_mode = 0
+offset_left = 173.0
+offset_top = 933.0
+offset_right = 220.0
+offset_bottom = 980.0
+
+[node name="Icon_4" type="TextureRect" parent="Icon_manager/Cont_4/Container"]
+unique_name_in_owner = true
+layout_mode = 2
+expand_mode = 1
+
+[node name="Front" type="TextureProgressBar" parent="Icon_manager/Cont_4"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
