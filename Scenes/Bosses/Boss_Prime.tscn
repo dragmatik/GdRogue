@@ -1,7 +1,7 @@
 [gd_scene load_steps=53 format=3 uid="uid://c1kr64nuqowqw"]
 
 [ext_resource type="Script" path="res://Scripts/Bosses/Prime_Script.gd" id="1_fnr0d"]
-[ext_resource type="Script" path="res://Scripts/Bosses/System/B_damage_handler.gd" id="3_8raob"]
+[ext_resource type="Script" path="res://Scripts/Enemies/System/Damage_handler.gd" id="2_pq42t"]
 [ext_resource type="Script" path="res://Scripts/Bosses/Prime_mechanics.gd" id="4_4ftpo"]
 [ext_resource type="PackedScene" uid="uid://bhpa654oki1r2" path="res://Scenes/Bosses/B_Bar.tscn" id="4_lv6ri"]
 [ext_resource type="Shader" path="res://Shaders/Flash.gdshader" id="4_xrtsg"]
@@ -803,9 +803,9 @@ script = ExtResource("1_fnr0d")
 
 [node name="HP" type="Node2D" parent="Body"]
 position = Vector2(0, -3)
-script = ExtResource("3_8raob")
+script = ExtResource("2_pq42t")
 
-[node name="UI" parent="Body/HP" instance=ExtResource("4_lv6ri")]
+[node name="Health" parent="Body/HP" instance=ExtResource("4_lv6ri")]
 
 [node name="States" type="Node2D" parent="Body"]
 script = ExtResource("4_4ftpo")

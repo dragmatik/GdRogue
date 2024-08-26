@@ -1,93 +1,95 @@
 extends CharacterBody2D
 
+# Imports
+@onready var state_tree: AnimationTree = $State_tree
+@onready var state_machine: AnimationNodeStateMachinePlayback = state_tree["parameters/playback"]
+@onready var health_node: Node2D = $HP
+@onready var attack_collider_1: CollisionShape2D = $Attack/Area_1/Collider
+@onready var attack_collider_2: CollisionShape2D = $Attack/Area_2/Collider
+@onready var Idle_timer: Timer = $Timers/Idle
+@onready var Cast_timer: Timer = $Timers/Cast
+
 # Constants
-const Total_Health = 1000
-const Speed = 1.35
+const HEALTH: int = 10000
+const Speed: float = 1.35
+
+# Variables
+var player: CharacterBody2D 
 
 # Conditions
-var can_attack = false
-var can_cast = false
-var is_detected = false
+var can_attack: bool = false
+var can_cast: bool = false
+var is_detected: bool = false
+const rush: Array = ["rush"]
+const defeat: Array = ["death"]
+const slash: Array = ["slash"]
+const attacks: Array = ["cast", "ready", "chase"]
+const casts: Array = ["power_up", "cancel"]
 
-@onready var state_tree = $State_tree
-@onready var state_machine = state_tree["parameters/playback"]
-
-const rush = ["rush"]
-const defeat = ["death"]
-const slash = ["slash"]
-const attacks = ["cast", "ready", "chase"]
-const casts = ["power_up", "cancel"]
-
-func _ready():
-	$Attack/Area_1/Collider.disabled = true
-	$Attack/Area_2/Collider.disabled = true
+func _ready() -> void:
+	attack_collider_1.disabled = true
+	attack_collider_2.disabled = true
 
 #### Start an attack ####
 
-func start_attack():
+func start_attack() -> void:
 	state_machine.travel(attacks.pick_random())
 
-func idle_timer():
+func idle_timer() -> void:
 	if not can_attack:
-		$Timers/Idle.start(1.5)
+		Idle_timer.start(1.5)
 		can_attack = true
 
-func _on_idle_timeout():
+func _on_idle_timeout() -> void:
 	start_attack()
 
-func set_attack_false():
+func set_attack_false() -> void:
 	can_attack = false
 
 #### Rush attack ####
 
-func rush_attack():
+func rush_attack() -> void:
 	state_machine.travel(rush.pick_random())
 
 #### Slash ####
 
-func slash_attack():
+func slash_attack() -> void:
 	if is_detected:
 		state_machine.travel(slash.pick_random())
 
 #### Hold cast ####
 
-func cast_attack():
+func cast_attack() -> void:
 	state_machine.travel(casts.pick_random())
 
-func cast_timer():
+func cast_timer() -> void:
 	if not can_cast:
-		$Timers/Cast.start(1.85)
+		Cast_timer.start(1.85)
 		can_cast = true
 
-func _on_cast_timeout():
+func _on_cast_timeout() -> void:
 	cast_attack()
 
-func set_cast_false():
+func set_cast_false() -> void:
 	can_cast = false
 
 #### Detect the player ####
 
-var player 
-
-func _on_vision_det_body_entered(body):
+func _on_vision_det_body_entered(body: CharacterBody2D) -> void:
 	player = body
 
-func _on_vision_det_body_exited(_body):
+func _on_vision_det_body_exited(_body: CharacterBody2D) -> void:
 	player = null
 
-func _on_detect_body_entered(_body):
+func _on_detect_body_entered(_body: CharacterBody2D) -> void:
 	is_detected = true
 
-func _on_detect_body_exited(_body):
+func _on_detect_body_exited(_body: CharacterBody2D) -> void:
 	is_detected = false
 
-func _on_hitbox_area_entered(area):
-	for meta_int in area.get_meta_list():
-		if area.has_meta(meta_int):
-			$HP.handle_damage(area.get_meta(meta_int), meta_int)
-		
-		if $HP.ENEMY_HEALTH <= 0:
-			state_machine.travel(defeat.pick_random())
-		
-		elif $HP.ENEMY_HEALTH <= Total_Health * 0.5:
-			print(1)
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	health_node.handle_damage(area)
+	if health_node.enemy_health <= 0:
+		state_machine.travel(defeat.pick_random())
+	elif health_node.enemy_health <= HEALTH * 0.5:
+		print("Phase 2")

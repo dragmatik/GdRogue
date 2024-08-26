@@ -74,9 +74,9 @@ func handle_damage(area: Area2D) -> void:
 			# Handle special damage types
 			if SingletonBools.Is_Bleed:
 				start_bleeding_effect()
-			elif SingletonBools.Is_Thunder:
+			if SingletonBools.Is_Thunder:
 				start_thunder_effect()
-			elif SingletonBools.Is_Bolt:
+			if SingletonBools.Is_Bolt:
 				start_bolt_effect()
 		"fire_ball_area":
 			apply_damage(SingletonBools.Fire_ball_damage, Color(1, 1, 1, 1))

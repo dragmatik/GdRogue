@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=2 format=3 uid="uid://mrq2p4wq0y2q"]
+
+[ext_resource type="Script" path="res://Resources/Ability_class.gd" id="1_satoa"]
+
+[resource]
+script = ExtResource("1_satoa")
+name = "force_field"
+cooldown = 5.0
+duration = 3.0

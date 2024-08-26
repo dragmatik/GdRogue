@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://c4mvcl5jc2jqr"]
+[gd_scene load_steps=8 format=3 uid="uid://c4mvcl5jc2jqr"]
 
-[ext_resource type="Texture2D" uid="uid://rtpdtlltvidm" path="res://Sprites/Effects/Blood.png" id="1_o40q6"]
+[ext_resource type="Texture2D" uid="uid://rtpdtlltvidm" path="res://Sprites/Effects/Particles/Blood.png" id="1_o40q6"]
 
 [sub_resource type="Gradient" id="Gradient_rcgju"]
 offsets = PackedFloat32Array(0, 0.450893, 0.522321, 1)
@@ -37,9 +37,6 @@ collision_use_scale = true
 [sub_resource type="CanvasTexture" id="CanvasTexture_jqn61"]
 diffuse_texture = ExtResource("1_o40q6")
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_r15bp"]
-polygon = PackedVector2Array(-23, 20, 24, 20, 24, 26, -23, 26)
-
 [node name="Blood" type="GPUParticles2D"]
 amount = 40
 process_material = SubResource("ParticleProcessMaterial_oqnqj")
@@ -48,7 +45,3 @@ lifetime = 0.6
 explosiveness = 0.25
 randomness = 0.5
 collision_base_size = 0.0
-
-[node name="Test_occluder" type="LightOccluder2D" parent="."]
-visible = false
-occluder = SubResource("OccluderPolygon2D_r15bp")

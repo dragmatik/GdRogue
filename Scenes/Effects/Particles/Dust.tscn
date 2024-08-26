@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://cte0bgw6h3482"]
 
-[ext_resource type="Texture2D" uid="uid://d4hod85v62jm4" path="res://Sprites/Effects/Flame.png" id="1_wgtrp"]
+[ext_resource type="Texture2D" uid="uid://d4hod85v62jm4" path="res://Sprites/Effects/Particles/Flame.png" id="1_wgtrp"]
 [ext_resource type="Script" path="res://Scripts/Effects/Particles/Dust.gd" id="2_u1a11"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_l1ua3"]

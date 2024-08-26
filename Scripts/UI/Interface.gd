@@ -4,14 +4,14 @@ extends Node
 @onready var Health_Max: int = $"../HP".MAX_HEALTH
 @onready var health_node: Node2D = $"../HP"
 @onready var Health_Bar: TextureProgressBar = $Health_bar
+@onready var Label_holder: Control = $Health_bar/Placeholder
 @onready var Health_Value_Label: Label = $Health_value
-@onready var Label_holder: Control = $Health_bar/placeholder
-@onready var Cooldown_Bar: TextureProgressBar = $cooldown_bar
-@onready var Duration_Bar: TextureProgressBar = $duration_bar
+@onready var Cooldown_Bar: TextureProgressBar = $Cooldown_bar
+@onready var Duration_Bar: TextureProgressBar = $Duration_bar
+@onready var Ability_icon: TextureRect = %Icon_a
 @onready var Coins_Label: Label = $Coins
 @onready var Options_Panel: Control = $Options
-@onready var Skill_Icons: PanelContainer = $cooldown_bar/Icons
-@onready var Ability_node: Node2D = $"../Ability"
+@onready var Ability_node: Node2D = $"../Get_abilities"
 
 func _ready() -> void:
 	Health_Bar.max_value = Health_Max
@@ -42,9 +42,9 @@ func _process(_delta: float) -> void:
 	Cooldown_Bar.value = cooldown * Cooldown_Bar.max_value / cooldown_time
 	# Unfocus the skill icon during cooldown
 	if Cooldown_Bar.value != 0:
-		Skill_Icons.modulate = Color(1, 1, 1, 0.45)
+		Ability_icon.modulate = Color(1, 1, 1, 0.45)
 	else:
-		Skill_Icons.modulate = Color(1, 1, 1, 1)
+		Ability_icon.modulate = Color(1, 1, 1, 1)
 	
 	# Skill duration timer
 	var duration: float = Ability_node.get_remaining_duration()

@@ -1,40 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://depnljm0j32df"]
+[gd_scene load_steps=12 format=3 uid="uid://depnljm0j32df"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/En_Necro/N_Fire.gd" id="1_npyka"]
-[ext_resource type="Texture2D" uid="uid://d4hod85v62jm4" path="res://Sprites/Effects/Flame.png" id="2_ailtb"]
+[ext_resource type="Material" uid="uid://b3jhxv3tfpo1g" path="res://Particles/Flame.tres" id="2_0uosj"]
+[ext_resource type="Texture2D" uid="uid://d4hod85v62jm4" path="res://Sprites/Effects/Particles/Flame.png" id="2_ailtb"]
 [ext_resource type="Texture2D" uid="uid://bx6v3xo8gvwtt" path="res://Sprites/Environment/light.png" id="3_uqt5f"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_l1ua3"]
 blend_mode = 1
-
-[sub_resource type="Gradient" id="Gradient_dmkrb"]
-offsets = PackedFloat32Array(0, 0.0491071, 0.90625, 0.959821, 1)
-colors = PackedColorArray(0.996078, 0.619608, 0.462745, 0, 1, 0.988235, 0.25098, 1, 0.905882, 0.219608, 0, 1, 0.94902, 0.572549, 0.45098, 0.4, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_pi40e"]
-gradient = SubResource("Gradient_dmkrb")
-width = 100
-
-[sub_resource type="Curve" id="Curve_snuvs"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.980159, 0.103821), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_cyw7d"]
-curve = SubResource("Curve_snuvs")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sod30"]
-resource_local_to_scene = true
-particle_flag_disable_z = true
-angle_max = 720.0
-direction = Vector3(0, -1, 0)
-spread = 25.0
-initial_velocity_min = 20.0
-initial_velocity_max = 20.0
-gravity = Vector3(0, 0, 0)
-scale_min = 0.05
-scale_max = 0.1
-scale_curve = SubResource("CurveTexture_cyw7d")
-color_ramp = SubResource("GradientTexture1D_pi40e")
 
 [sub_resource type="Gradient" id="Gradient_qvy18"]
 offsets = PackedFloat32Array(0, 0.586957, 0.634783, 1)
@@ -73,7 +45,7 @@ script = ExtResource("1_npyka")
 
 [node name="Flame" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_l1ua3")
-process_material = SubResource("ParticleProcessMaterial_sod30")
+process_material = ExtResource("2_0uosj")
 texture = ExtResource("2_ailtb")
 explosiveness = 0.1
 randomness = 0.5

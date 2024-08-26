@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bxev5xhgvf0qb"]
 
-[ext_resource type="Texture2D" uid="uid://d4hod85v62jm4" path="res://Sprites/Effects/Flame.png" id="2_o622v"]
+[ext_resource type="Texture2D" uid="uid://d4hod85v62jm4" path="res://Sprites/Effects/Particles/Flame.png" id="2_o622v"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_l1ua3"]
 blend_mode = 1

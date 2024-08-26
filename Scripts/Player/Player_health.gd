@@ -1,21 +1,21 @@
 extends Node
 
+# Imports
+@onready var HEALTH: float = MAX_HEALTH # dynamic health (float for more precision)
+@onready var body_node: Node2D = $".."
+@onready var animation_node: AnimationPlayer = $"../Player_animation"
+@onready var flash_effect: AnimationPlayer = $"../Effects/Flash_effect"
+@onready var immunity_timer: Timer = $Immunity
+@onready var hitbox_collider: CollisionShape2D = $"../Hitbox/Collider"
+@onready var block_node: Node2D = $"../Secondary_attack"
+@onready var curse_node: Node2D = $"../Get_curses"
+@onready var camera: Camera2D = $"../Camera"
+
 # Variables
 var MAX_HEALTH: float = 100
 var DAMAGE_TAKEN: float = 0
 var Immune: bool = false
 var Immunity_time: float = 2
-
-# Imports
-@onready var HEALTH: float = MAX_HEALTH # dynamic health (float for more precision)
-@onready var body_node: Node2D = $".."
-@onready var animation_node: AnimationPlayer = $"../Animation"
-@onready var flash_effect: AnimationPlayer = $"../Flash"
-@onready var immunity_timer: Timer = $Immunity
-@onready var hitbox_collider: CollisionShape2D = $"../Hitbox/Collider"
-@onready var block_node: Node2D = $"../Blocking"
-@onready var curse_node: Node2D = $"../Curses"
-@onready var camera: Camera2D = $"../Camera"
 
 func _process(_delta: float) -> void:
 	# Handle player death

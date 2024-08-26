@@ -1,5 +1,21 @@
 extends CharacterBody2D
 
+# Imports
+@onready var sprite_node: Node2D = $Player_sprite
+@onready var animation_node: AnimationPlayer = $Player_animation
+@onready var weapon_sprite: Sprite2D = $Weapon_sprite
+@onready var health_node: Node2D = $HP
+@onready var attack_node: Node2D = $Primary_attack
+@onready var block_node: Node2D = $Secondary_attack
+@onready var attack_area: Area2D = $Primary_attack/Slash
+@onready var shield_area: Area2D = $Secondary_attack/Shield
+@onready var attack_collider: CollisionShape2D = $Primary_attack/Slash/Collider
+@onready var emitter_1: Node2D = $Emitters/Emitter_1
+@onready var emitter_2: Node2D = $Emitters/Emitter_2
+@onready var Ability_node: Node2D = $Get_abilities
+@onready var hitbox_collider: CollisionShape2D = $Hitbox/Collider
+@onready var hanger: Area2D = $Hanger
+
 # Movement Variables
 var SPEED: float = 150
 const SLIDE_SPEED: int = 200
@@ -39,22 +55,6 @@ var max_dashes: int = 1
 var walk_interval: float = 0.2
 var short_interval: float = 0.01
 var dust_timer: float = 0.0
-
-# Imports
-@onready var sprite_node: Node2D = $Sprite
-@onready var animation_node: AnimationPlayer = $Animation
-@onready var weapon_sprite: Sprite2D = $Equipment/Weapon
-@onready var health_node: Node2D = $HP
-@onready var attack_node: Node2D = $Attacking
-@onready var block_node: Node2D = $Blocking
-@onready var attack_area: Area2D = $Attacking/Slash
-@onready var shield_area: Area2D = $Blocking/Shield
-@onready var attack_collider: CollisionShape2D = $Attacking/Slash/Collider
-@onready var emitter_1: Node2D = $Emitters/Emitter_1
-@onready var emitter_2: Node2D = $Emitters/Emitter_2
-@onready var Ability_node: Node2D = $Ability
-@onready var hitbox_collider: CollisionShape2D = $Hitbox/Collider
-@onready var hanger: Area2D = $Hanger
 
 # Player state
 enum player_state {MOVE, ATTACK, DEAD, PARRY, DASH, HIT, HANG}
@@ -136,7 +136,7 @@ func movement(delta: float) -> void:
 			dust_maker(delta, -1, short_interval, emitter_1.global_position) 
 
 	# Handle Power ups
-	if Input.is_action_just_pressed("ui_special"):
+	if Input.is_action_just_pressed("ui_ability"):
 		Ability_node.skills()
 
 	if is_sliding:

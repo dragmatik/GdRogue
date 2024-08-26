@@ -1,14 +1,19 @@
 extends Node2D
 
+# Imports
+@onready var state_tree: AnimationTree = $"../State_tree"
+@onready var state_machine: AnimationNodeStateMachinePlayback = state_tree["parameters/playback"]
+@onready var parent_node: CharacterBody2D = $"../.."
+@onready var body_node: CharacterBody2D = $".."
+@onready var sprite_node: AnimatedSprite2D = $"../Sprite"
+@onready var attack_collider_1: CollisionShape2D = $"../Attack/Area_1/Collider"
+@onready var attack_collider_2: CollisionShape2D = $"../Attack/Area_2/Collider"
+
 # Variables
-var direction = 0
-@onready var Parent = $".."
-@onready var state_tree = $"../State_tree"
-@onready var state_machine = state_tree["parameters/playback"]
+var direction: float = 0
 
-#### Process ####
-
-func _process(delta):
+# Process
+func _process(delta: float) -> void:
 	if state_machine.is_playing():
 		if state_machine.get_current_node() == "idle":
 			stand(delta)
@@ -17,70 +22,67 @@ func _process(delta):
 		elif state_machine.get_current_node() == "chase":
 			chase()
 
-#### Basics #### 
+# Basics
+func fall(delta: float) -> void:
+	var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
+	body_node.velocity.y += gravity * delta
+	body_node.move_and_slide()
 
-func fall(delta):
-	var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-	Parent.velocity.y += gravity * delta
-	Parent.move_and_slide()
-
-func stand(delta):
-	if not Parent.is_on_floor():
+func stand(delta: float) -> void:
+	if not body_node.is_on_floor():
 		fall(delta)
 	else:
-		Parent.velocity = Vector2.ZERO
+		body_node.velocity = Vector2.ZERO
 
-func defeat():
-	$Attack/Area_1/Collider.disabled = true
-	$Attack/Area_2/Collider.disabled = true
+func defeat() -> void:
+	attack_collider_1.disabled = true
+	attack_collider_2.disabled = true
 
-func death():
-	$"../..".queue_free()
+func death() -> void:
+	parent_node.queue_free()
 
-#### Chase ####
-
-func chase():
-	if $"..".player:
-		direction = $"..".player.global_position.x - $"../Sprite".global_position.x
-		Parent.velocity.x = direction * $"..".Speed
+# Chase 
+func chase() -> void:
+	if body_node.player:
+		direction = body_node.player.global_position.x - sprite_node.global_position.x
+		body_node.velocity.x = direction * body_node.Speed
 	# Determine facing direction and adjust animations
 	if direction > 0:
-		$"../Sprite".flip_h = false
-		$"../Attack/Area_1/Collider".position.x = 29
-		$"../Attack/Area_2/Collider".position.x = -25
+		sprite_node.flip_h = false
+		attack_collider_1.position.x = 29
+		attack_collider_2.position.x = -25
 	elif direction < 0:
-		$"../Sprite".flip_h = true
-		$"../Attack/Area_1/Collider".position.x = -29
-		$"../Attack/Area_2/Collider".position.x = 25
-	Parent.move_and_slide()
+		sprite_node.flip_h = true
+		attack_collider_1.position.x = -29
+		attack_collider_2.position.x = 25
+	body_node.move_and_slide()
 
-#### Attacks ####
-
-var can_rush = false
+# Attacks
+var can_rush: bool = false
 func rush_frame(): # on rush frame
 	can_rush = true
 
-var target = null
+var target: float
 func target_player(): # on first frame
-	if $"..".player: 
-		target = $"..".player.global_position.x
+	if body_node.player: 
+		target = body_node.player.global_position.x
 
-func rush(): 
+func rush() -> void: 
 	if can_rush:
-		direction = target - $"../Sprite".global_position.x
-		Parent.velocity.x = direction * 6
+		direction = target - sprite_node.global_position.x
+		body_node.velocity.x = direction * 6
 		if direction > 0:
-			$"../Sprite".flip_h = false
-			$"../Attack/Area_1/Collider".position.x = 29
-			$"../Attack/Area_2/Collider".position.x = -25
+			sprite_node.flip_h = false
+			attack_collider_1.position.x = 29
+			attack_collider_2.position.x = -25
 		elif direction < 0:
-			$"../Sprite".flip_h = true
-			$"../Attack/Area_1/Collider".position.x = -29
-			$"../Attack/Area_2/Collider".position.x = 25
-		Parent.move_and_slide()
+			sprite_node.flip_h = true
+			attack_collider_1.position.x = -29
+			attack_collider_2.position.x = 25
+		body_node.move_and_slide()
 
-func rush_attack():
+func rush_attack() -> void:
 	rush()
 
-func finish_rush(): 
+func finish_rush() -> void: 
 	can_rush = false

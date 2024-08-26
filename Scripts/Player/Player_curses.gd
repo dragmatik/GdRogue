@@ -1,5 +1,8 @@
 extends Node
 
+# imports
+@onready var health_node: Node2D = $"../HP"
+
 # Bleeding Variables
 var bleeding: bool = false
 var bleeding_duration: float = 2.0
@@ -11,9 +14,6 @@ var get_blood_scene: Node2D
 # Preloads
 var Claw: PackedScene = preload("res://Scenes/Effects/Textures/Claw.tscn")
 var Blood: PackedScene = preload("res://Scenes/Effects/Particles/Blood.tscn")
-
-# imports
-@onready var health_node: Node2D = $"../HP"
 
 func _process(delta: float) -> void:
 	# Handle bleeding effect

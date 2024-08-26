@@ -1,18 +1,20 @@
-[gd_scene load_steps=55 format=3 uid="uid://bfaxhjpiym61g"]
+[gd_scene load_steps=57 format=3 uid="uid://bfaxhjpiym61g"]
 
-[ext_resource type="Script" path="res://Scripts/Player/Player_controller.gd" id="1_lkusj"]
-[ext_resource type="Script" path="res://Scripts/Player/Player_items.gd" id="2_dnb1c"]
-[ext_resource type="Script" path="res://Scripts/Player/Player_health.gd" id="2_q1yrv"]
+[ext_resource type="Script" path="res://Scripts/Player/Player_Controller.gd" id="1_lkusj"]
+[ext_resource type="Script" path="res://Scripts/Player/Get_items.gd" id="2_dnb1c"]
+[ext_resource type="Script" path="res://Scripts/Player/Player_Health.gd" id="2_q1yrv"]
 [ext_resource type="PackedScene" uid="uid://b7r02dm64auyn" path="res://Scenes/Gameplay/Camera.tscn" id="3_6yvgn"]
-[ext_resource type="Script" path="res://Scripts/Player/Player_curses.gd" id="3_ccwwm"]
+[ext_resource type="Script" path="res://Scripts/Player/Player_Curses.gd" id="3_ccwwm"]
 [ext_resource type="Texture2D" uid="uid://s3ekiqex3645" path="res://Sprites/Player/Player.png" id="3_hmrpb"]
 [ext_resource type="Texture2D" uid="uid://b5axrbd6ayqt3" path="res://Sprites/Player/Player_n.png" id="4_4jqbw"]
-[ext_resource type="Script" path="res://Scripts/Player/Player_melee.gd" id="4_xjvng"]
+[ext_resource type="Script" path="res://Scripts/Player/Player_Primary.gd" id="4_xjvng"]
 [ext_resource type="Shader" path="res://Shaders/Flash.gdshader" id="5_cxypv"]
-[ext_resource type="Script" path="res://Scripts/Player/Player_shield.gd" id="5_i1lc1"]
-[ext_resource type="Script" path="res://Scripts/Player/Player_Power_ups.gd" id="7_v5mpe"]
-[ext_resource type="Script" path="res://Scripts/Player/Player_ability.gd" id="11_843ot"]
+[ext_resource type="Script" path="res://Scripts/Player/Player_Secondary.gd" id="5_i1lc1"]
+[ext_resource type="Script" path="res://Scripts/Player/Abilities.gd" id="7_v5mpe"]
+[ext_resource type="Script" path="res://Scripts/Player/Items.gd" id="11_3i7ak"]
+[ext_resource type="Script" path="res://Scripts/Player/Get_abilities.gd" id="11_843ot"]
 [ext_resource type="PackedScene" uid="uid://dtxrcu58gojad" path="res://Scenes/UI/GUI.tscn" id="11_wg6jn"]
+[ext_resource type="Script" path="res://Scripts/Player/Weapon_Bonus.gd" id="12_wovhv"]
 [ext_resource type="PackedScene" uid="uid://jcik2dblgtim" path="res://Scenes/UI/Options.tscn" id="13_klct1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w6ngs"]
@@ -35,7 +37,7 @@ step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Player_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -47,7 +49,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Attacking/Slash/Collider:disabled")
+tracks/1/path = NodePath("Primary_attack/Slash/Collider:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -64,7 +66,7 @@ step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Attacking/Slash/Collider:disabled")
+tracks/0/path = NodePath("Primary_attack/Slash/Collider:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -90,7 +92,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:frame")
+tracks/2/path = NodePath("Player_sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -107,7 +109,7 @@ step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Attacking/Slash/Collider:disabled")
+tracks/0/path = NodePath("Primary_attack/Slash/Collider:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -133,7 +135,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:frame")
+tracks/2/path = NodePath("Player_sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -150,7 +152,7 @@ step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Attacking/Slash/Collider:disabled")
+tracks/0/path = NodePath("Primary_attack/Slash/Collider:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -173,14 +175,26 @@ tracks/1/keys = {
 "method": &"reset_state"
 }]
 }
-tracks/2/type = "method"
+tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Attacking")
+tracks/2/path = NodePath("Player_sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.466667),
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [195, 196, 197, 198, 199, 200, 201, 202]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Weapon_Bonus")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.333333),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -190,18 +204,6 @@ tracks/2/keys = {
 "method": &"reset_base"
 }]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [195, 196, 197, 198, 199, 200, 201, 202]
-}
 
 [sub_resource type="Animation" id="Animation_m02l0"]
 resource_name = "attack_2"
@@ -210,7 +212,7 @@ step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Attacking/Slash/Collider:disabled")
+tracks/0/path = NodePath("Primary_attack/Slash/Collider:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -233,14 +235,26 @@ tracks/1/keys = {
 "method": &"reset_state"
 }]
 }
-tracks/2/type = "method"
+tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Attacking")
+tracks/2/path = NodePath("Player_sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.333333),
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [203, 204, 205, 206, 207, 208]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Weapon_Bonus")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -250,18 +264,6 @@ tracks/2/keys = {
 "method": &"reset_base"
 }]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [203, 204, 205, 206, 207, 208]
-}
 
 [sub_resource type="Animation" id="Animation_apcbi"]
 resource_name = "attack_3"
@@ -270,7 +272,7 @@ step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Attacking/Slash/Collider:disabled")
+tracks/0/path = NodePath("Primary_attack/Slash/Collider:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -293,14 +295,26 @@ tracks/1/keys = {
 "method": &"reset_state"
 }]
 }
-tracks/2/type = "method"
+tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Attacking")
+tracks/2/path = NodePath("Player_sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.533333),
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.533333, 0.6, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Weapon_Bonus")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -310,18 +324,6 @@ tracks/2/keys = {
 "method": &"reset_base"
 }]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.533333, 0.6, 0.666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219]
-}
 
 [sub_resource type="Animation" id="Animation_5d0ve"]
 resource_name = "dash"
@@ -330,7 +332,7 @@ step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Player_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -347,7 +349,7 @@ step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Player_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -364,7 +366,7 @@ step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Player_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -382,7 +384,7 @@ step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Player_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -399,7 +401,7 @@ step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Player_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -416,7 +418,7 @@ step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Player_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -447,7 +449,7 @@ step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Player_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -465,7 +467,7 @@ step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Player_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -483,7 +485,7 @@ step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Player_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -500,7 +502,7 @@ step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Player_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -518,7 +520,7 @@ step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Player_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -535,7 +537,7 @@ step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Player_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -553,7 +555,7 @@ step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Player_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -592,7 +594,7 @@ step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Equipment/Weapon:frame")
+tracks/0/path = NodePath("Weapon_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -609,7 +611,7 @@ step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Equipment/Weapon:frame")
+tracks/0/path = NodePath("Weapon_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -621,7 +623,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Equipment/Weapon:hframes")
+tracks/1/path = NodePath("Weapon_sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -633,7 +635,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Equipment/Weapon:vframes")
+tracks/2/path = NodePath("Weapon_sprite:vframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -650,7 +652,7 @@ step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Equipment/Weapon:frame")
+tracks/0/path = NodePath("Weapon_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -662,7 +664,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Equipment/Weapon:hframes")
+tracks/1/path = NodePath("Weapon_sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -674,7 +676,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Equipment/Weapon:vframes")
+tracks/2/path = NodePath("Weapon_sprite:vframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -691,7 +693,7 @@ step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Equipment/Weapon:frame")
+tracks/0/path = NodePath("Weapon_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -703,7 +705,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Equipment/Weapon:hframes")
+tracks/1/path = NodePath("Weapon_sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -715,7 +717,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Equipment/Weapon:vframes")
+tracks/2/path = NodePath("Weapon_sprite:vframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -738,7 +740,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:material:shader_parameter/color_intensity")
+tracks/0/path = NodePath("Player_sprite:material:shader_parameter/color_intensity")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -755,7 +757,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:material:shader_parameter/color_intensity")
+tracks/0/path = NodePath("Player_sprite:material:shader_parameter/color_intensity")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -776,7 +778,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:material:shader_parameter/EnableOutline")
+tracks/0/path = NodePath("Player_sprite:material:shader_parameter/EnableOutline")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -792,7 +794,7 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:material:shader_parameter/EnableOutline")
+tracks/0/path = NodePath("Player_sprite:material:shader_parameter/EnableOutline")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -804,7 +806,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:material:shader_parameter/outline_color")
+tracks/1/path = NodePath("Player_sprite:material:shader_parameter/outline_color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -820,7 +822,7 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:material:shader_parameter/EnableOutline")
+tracks/0/path = NodePath("Player_sprite:material:shader_parameter/EnableOutline")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -832,7 +834,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:material:shader_parameter/outline_color")
+tracks/1/path = NodePath("Player_sprite:material:shader_parameter/outline_color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -849,15 +851,15 @@ _data = {
 "speed": SubResource("Animation_adl2q")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_wf0ia"]
-radius = 20.025
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ykaby"]
 radius = 11.0
 height = 44.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7lykx"]
 size = Vector2(8, 36.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wf0ia"]
+radius = 20.025
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o6xqy"]
 size = Vector2(17, 37.7811)
@@ -874,7 +876,7 @@ position = Vector2(-109, 48)
 collision_mask = 2
 script = ExtResource("1_lkusj")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Player_sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_w6ngs")
 position = Vector2(-9.53674e-07, -21)
 scale = Vector2(0.8, 0.8)
@@ -882,32 +884,33 @@ texture = SubResource("CanvasTexture_7lm1b")
 hframes = 8
 vframes = 40
 
-[node name="Animation" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_w0e42")
-}
-
-[node name="Equipment" type="Node2D" parent="."]
-
-[node name="Weapon" type="Sprite2D" parent="Equipment"]
+[node name="Weapon_sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -21)
 scale = Vector2(0.8, 0.8)
 hframes = 8
 vframes = 4
 frame = 2
 
-[node name="Weapon_animation" type="AnimationPlayer" parent="Equipment"]
-root_node = NodePath("../..")
+[node name="Player_animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_w0e42")
+}
+
+[node name="Weapon_animation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_57bnr")
 }
 
-[node name="Flash" type="AnimationPlayer" parent="."]
+[node name="Effects" type="Node2D" parent="."]
+
+[node name="Flash_effect" type="AnimationPlayer" parent="Effects"]
+root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_odypt")
 }
 
-[node name="Outline" type="AnimationPlayer" parent="."]
+[node name="Outline_effect" type="AnimationPlayer" parent="Effects"]
+root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_owvhp")
 }
@@ -917,60 +920,66 @@ script = ExtResource("2_q1yrv")
 
 [node name="Immunity" type="Timer" parent="HP"]
 
-[node name="Items" type="Node2D" parent="."]
-script = ExtResource("2_dnb1c")
-
-[node name="Collector" type="Area2D" parent="Items"]
-collision_mask = 64
-
-[node name="Collider" type="CollisionShape2D" parent="Items/Collector"]
-shape = SubResource("CircleShape2D_wf0ia")
-debug_color = Color(0.223529, 0.607843, 0.552941, 0.172549)
-
-[node name="Curses" type="Node2D" parent="."]
-script = ExtResource("3_ccwwm")
-
-[node name="Attacking" type="Node2D" parent="."]
+[node name="Primary_attack" type="Node2D" parent="."]
 script = ExtResource("4_xjvng")
 
-[node name="Slash" type="Area2D" parent="Attacking"]
+[node name="Slash" type="Area2D" parent="Primary_attack"]
 position = Vector2(37, 0)
 collision_layer = 8
 collision_mask = 4
 
-[node name="Collider" type="CollisionShape2D" parent="Attacking/Slash"]
+[node name="Collider" type="CollisionShape2D" parent="Primary_attack/Slash"]
 shape = SubResource("CapsuleShape2D_ykaby")
 disabled = true
 debug_color = Color(0.443128, 0.492655, 1, 0.42)
 
-[node name="Combo_reset" type="Timer" parent="Attacking"]
+[node name="Combo_reset" type="Timer" parent="Primary_attack"]
 
-[node name="Blocking" type="Node2D" parent="."]
+[node name="Secondary_attack" type="Node2D" parent="."]
 script = ExtResource("5_i1lc1")
 
-[node name="Shield" type="Area2D" parent="Blocking"]
+[node name="Shield" type="Area2D" parent="Secondary_attack"]
 position = Vector2(15, 3)
 collision_mask = 16
 
-[node name="Collider" type="CollisionShape2D" parent="Blocking/Shield"]
+[node name="Collider" type="CollisionShape2D" parent="Secondary_attack/Shield"]
 shape = SubResource("RectangleShape2D_7lykx")
 disabled = true
 debug_color = Color(0.996078, 0.65098, 0.113725, 0.145098)
 
-[node name="Block" type="Timer" parent="Blocking"]
+[node name="Block" type="Timer" parent="Secondary_attack"]
 one_shot = true
 
-[node name="Ability" type="Node2D" parent="."]
+[node name="Weapon_Bonus" type="Node2D" parent="."]
+script = ExtResource("12_wovhv")
+
+[node name="Get_items" type="Node2D" parent="."]
+script = ExtResource("2_dnb1c")
+
+[node name="Collector" type="Area2D" parent="Get_items"]
+collision_mask = 64
+
+[node name="Collider" type="CollisionShape2D" parent="Get_items/Collector"]
+shape = SubResource("CircleShape2D_wf0ia")
+debug_color = Color(0.223529, 0.607843, 0.552941, 0.172549)
+
+[node name="Items" type="Node2D" parent="."]
+script = ExtResource("11_3i7ak")
+
+[node name="Get_abilities" type="Node2D" parent="."]
 script = ExtResource("11_843ot")
 
-[node name="Power_ups" type="Node2D" parent="."]
+[node name="Abilities" type="Node2D" parent="."]
 script = ExtResource("7_v5mpe")
 
-[node name="Ability_timer" type="Timer" parent="Power_ups"]
+[node name="Ability_timer" type="Timer" parent="Abilities"]
 one_shot = true
 
-[node name="Emit_free" type="Timer" parent="Power_ups"]
+[node name="Emit_free" type="Timer" parent="Abilities"]
 one_shot = true
+
+[node name="Get_curses" type="Node2D" parent="."]
+script = ExtResource("3_ccwwm")
 
 [node name="Emitters" type="Node2D" parent="."]
 
@@ -1013,12 +1022,12 @@ visible = false
 [node name="Camera" parent="." instance=ExtResource("3_6yvgn")]
 
 [connection signal="timeout" from="HP/Immunity" to="HP" method="_on_immunity_timeout"]
-[connection signal="area_entered" from="Items/Collector" to="Items" method="_on_collector_area_entered"]
-[connection signal="area_exited" from="Items/Collector" to="Items" method="_on_collector_area_exited"]
-[connection signal="timeout" from="Attacking/Combo_reset" to="Attacking" method="_on_combo_reset_timeout"]
-[connection signal="area_entered" from="Blocking/Shield" to="Blocking" method="_on_shield_area_entered"]
-[connection signal="timeout" from="Blocking/Block" to="Blocking" method="_on_block_timeout"]
-[connection signal="timeout" from="Power_ups/Ability_timer" to="Power_ups" method="_on_ability_timer_timeout"]
-[connection signal="timeout" from="Power_ups/Emit_free" to="Power_ups" method="_on_emit_free_timeout"]
+[connection signal="timeout" from="Primary_attack/Combo_reset" to="Primary_attack" method="_on_combo_reset_timeout"]
+[connection signal="area_entered" from="Secondary_attack/Shield" to="Secondary_attack" method="_on_shield_area_entered"]
+[connection signal="timeout" from="Secondary_attack/Block" to="Secondary_attack" method="_on_block_timeout"]
+[connection signal="area_entered" from="Get_items/Collector" to="Get_items" method="_on_collector_area_entered"]
+[connection signal="area_exited" from="Get_items/Collector" to="Get_items" method="_on_collector_area_exited"]
+[connection signal="timeout" from="Abilities/Ability_timer" to="Abilities" method="_on_ability_timer_timeout"]
+[connection signal="timeout" from="Abilities/Emit_free" to="Abilities" method="_on_emit_free_timeout"]
 [connection signal="area_entered" from="Hitbox" to="HP" method="_on_player_hitbox_area_entered"]
 [connection signal="area_entered" from="Hanger" to="." method="_on_hanger_area_entered"]

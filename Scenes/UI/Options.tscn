@@ -4,7 +4,7 @@
 [ext_resource type="StyleBox" uid="uid://c25tqybqq1s68" path="res://Interface/normal_button.tres" id="2_dfsxq"]
 [ext_resource type="Texture2D" uid="uid://dh0wtejbg66v6" path="res://Interface/Frames/3-6.png" id="3_0bvu5"]
 [ext_resource type="Script" path="res://Scripts/UI/Options.gd" id="3_ngimc"]
-[ext_resource type="Script" path="res://Scripts/Other/Items.gd" id="5_thka5"]
+[ext_resource type="Script" path="res://Scripts/UI/Items.gd" id="5_thka5"]
 
 [sub_resource type="Theme" id="Theme_833ft"]
 Button/font_sizes/font_size = 16

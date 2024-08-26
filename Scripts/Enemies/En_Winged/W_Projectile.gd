@@ -1,9 +1,10 @@
 extends Node
 
 # Imports
-@onready var proj_sprite: AnimatedSprite2D = $AnimatedSprite
+@onready var particles: GPUParticles2D = $Particles
 @onready var proj_collider: CollisionShape2D = $Area/Collision
 @onready var proj_timer: Timer = $Timer
+@onready var queue_timer: Timer = $Queue_free
 @onready var player_position = $"../Enemy".player_pos
 @onready var direction: Vector2 = (player_position - self.global_position).normalized()
 
@@ -22,7 +23,6 @@ func _process(delta: float) -> void:
 		# Move towards the direction
 		direction = (player_position - self.global_position).normalized()
 		self.global_position += direction * current_speed * delta
-		proj_sprite.play("default")
 
 func _on_area_area_entered(area: Area2D) -> void:
 	# If projectile collides with something, expire
@@ -35,8 +35,10 @@ func _on_timer_timeout() -> void:
 	trigger_expiration()
 
 func trigger_expiration() -> void:
-	proj_collider.disabled = true
+	proj_collider.call_deferred("set_disabled", true)
 	expired = true
-	proj_sprite.play("expired")
-	await proj_sprite.animation_finished
+	particles.emitting = false
+	queue_timer.start(1)
+
+func _on_queue_free_timeout() -> void:
 	queue_free()

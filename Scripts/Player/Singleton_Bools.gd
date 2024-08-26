@@ -17,18 +17,17 @@ func calculate_damage() -> float:
 	var multiplier: float = 1.0 + (sharpner_counter * 0.15)
 	return float(Base_damage * multiplier)
 
-# Abilities
+# Ability & Skill bools
 var Is_Thunder: bool = false
-var Thunder_damage: int = 20
-
 var Is_Bolt: bool = false
-var Bolt_damage: int = 250
-
 var Is_Bleed: bool = false
+
+var Is_Fire_ball: bool = false # just for the icons
+var Is_Force_field: bool = false # just for the icons
+
+# Ability & Skill damage
+var Thunder_damage: int = 20
+var Bolt_damage: int = 250
 var Bleed_damage: int = 10
 
-# Skills
-var Is_fire_ball: bool = false
 var Fire_ball_damage: int = 45
-
-var Is_force_field: bool = false
