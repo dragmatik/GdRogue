@@ -3,7 +3,7 @@ extends Node2D
 # Imports
 @onready var state_tree: AnimationTree = $"../State_tree"
 @onready var state_machine: AnimationNodeStateMachinePlayback = state_tree["parameters/playback"]
-@onready var parent_node: CharacterBody2D = $"../.."
+@onready var parent_node: Node2D = $"../.."
 @onready var body_node: CharacterBody2D = $".."
 @onready var sprite_node: AnimatedSprite2D = $"../Sprite"
 @onready var attack_collider_1: CollisionShape2D = $"../Attack/Area_1/Collider"

@@ -11,7 +11,7 @@ var get_scene: Node2D
 var Particles: GPUParticles2D
 
 func fire_ball_on() -> void:
-	var scene: PackedScene = preload("res://Scenes/Skills/Fire_Ball.tscn")
+	var scene: PackedScene = preload("res://Scenes/Abilities & Skills/Fire_Ball.tscn")
 	get_scene = scene.instantiate()
 	add_child(get_scene)
 	Particles = get_scene.get_node("Particles")

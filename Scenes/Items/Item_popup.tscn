@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Scripts/Items/Item_popup.gd" id="1_klrys"]
 [ext_resource type="Texture2D" uid="uid://cmd76tiok8eee" path="res://Interface/Frames/3-4.png" id="2_btcw6"]
 [ext_resource type="Texture2D" uid="uid://cr2tiblhlp6df" path="res://icon.svg" id="2_kqqmp"]
-[ext_resource type="LabelSettings" uid="uid://nw2lbfu0sk28" path="res://Interface/Label_default.tres" id="3_16u4r"]
-[ext_resource type="LabelSettings" uid="uid://oukqrdaw7c26" path="res://Interface/Label_title.tres" id="5_sprvo"]
+[ext_resource type="LabelSettings" uid="uid://nw2lbfu0sk28" path="res://Interface/Text/Label_default.tres" id="3_16u4r"]
+[ext_resource type="LabelSettings" uid="uid://oukqrdaw7c26" path="res://Interface/Text/Label_title.tres" id="5_sprvo"]
 
 [node name="Popup" type="Control"]
 layout_mode = 3

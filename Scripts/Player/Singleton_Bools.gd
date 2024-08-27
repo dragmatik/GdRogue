@@ -18,6 +18,7 @@ func calculate_damage() -> float:
 	return float(Base_damage * multiplier)
 
 # Skills: Bools and Damage variables
+
 var Is_Thunder: bool = false
 var Thunder_damage: int = 20
 
@@ -28,12 +29,12 @@ var Is_Bleed: bool = false
 var Bleed_damage: int = 10
 
 # Abilities: Bools and Damage variables
+
 var Ab_Is_Fire_ball: bool = false
 var Fire_ball_damage: int = 45
 
 var Ab_Is_Force_field: bool = false
 
-# If an ability is True, the rest are False
 func set_active_ability(active_ability: String) -> void:
 	# Deactivate all abilities
 	Ab_Is_Fire_ball = false

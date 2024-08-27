@@ -24,13 +24,7 @@ func _process(delta: float) -> void:
 	else:
 		if player:
 			var direction: Vector2 = (player.global_position - self.global_position).normalized()
-			self.global_position += direction * 100 * delta
-
-func expire() -> void:
-	queue_free()
-
-func _on_collected_area_entered(_area: Area2D) -> void:
-	$Animation.play("Collected")
+			self.global_position += direction * 150 * delta
 
 func _on_detector_body_entered(body: CharacterBody2D) -> void:
 	player = body
@@ -43,3 +37,12 @@ func _on_detector_body_exited(_body: CharacterBody2D) -> void:
 func _on_timer_timeout() -> void:
 	if player:
 		following = true
+
+func _on_coin_body_entered(_body: Node2D) -> void:
+	$Collected.emitting = true
+	$Particles.emitting = false
+	$Sprite.visible = false
+	$Collected_timer.start(0.4)
+
+func _on_collected_timer_timeout() -> void:
+	queue_free()

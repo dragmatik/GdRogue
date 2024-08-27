@@ -1,6 +1,6 @@
 [gd_scene load_steps=29 format=3 uid="uid://dna2nyq7c1533"]
 
-[ext_resource type="Texture2D" uid="uid://bx6v3xo8gvwtt" path="res://Sprites/Environment/light.png" id="1_4gnvk"]
+[ext_resource type="Texture2D" uid="uid://bx6v3xo8gvwtt" path="res://Sprites/Lighting/light.png" id="1_4gnvk"]
 [ext_resource type="Script" path="res://Scripts/Enemies/En_Winged/Winged.gd" id="2_8bf1w"]
 [ext_resource type="Script" path="res://Scripts/Enemies/System/Damage_handler.gd" id="3_ahwx7"]
 [ext_resource type="PackedScene" uid="uid://caav3i30vocuh" path="res://Scenes/Enemies/Health_bar.tscn" id="4_62vy8"]

@@ -3,7 +3,7 @@ extends Node
 # Stun variables
 var is_stunned = false
 var stun_duration = 2
-var stun_scene = preload("res://Scenes/Effects/Textures/Stun.tscn")
+var stun_scene = preload("res://Scenes/VFX/Textures/Stun.tscn")
 var stun
 
 # Imports

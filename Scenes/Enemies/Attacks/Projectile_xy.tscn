@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://tok5vsv4olbt"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/En_Winged/W_Projectile.gd" id="1_3iwk6"]
+[ext_resource type="Material" uid="uid://c6t180enn4jyh" path="res://Particles/Flame_ball.tres" id="3_jtybo"]
+[ext_resource type="Texture2D" uid="uid://d4hod85v62jm4" path="res://Sprites/VFX/Particles/Flame.png" id="4_2jokm"]
+[ext_resource type="Texture2D" uid="uid://bx6v3xo8gvwtt" path="res://Sprites/Lighting/light.png" id="5_2pasg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_py7u1"]
+radius = 4.50694
+
+[node name="Projectile" type="Node2D"]
+script = ExtResource("1_3iwk6")
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+amount = 25
+process_material = ExtResource("3_jtybo")
+texture = ExtResource("4_2jokm")
+
+[node name="source_light" type="PointLight2D" parent="Particles"]
+texture = ExtResource("5_2pasg")
+texture_scale = 0.2
+
+[node name="Area" type="Area2D" parent="."]
+visible = false
+collision_layer = 16
+metadata/damage = 30
+
+[node name="Collision" type="CollisionShape2D" parent="Area"]
+shape = SubResource("CircleShape2D_py7u1")
+debug_color = Color(0.683339, 0, 0.197394, 0.42)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Queue_free" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="area_entered" from="Area" to="." method="_on_area_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Queue_free" to="." method="_on_queue_free_timeout"]

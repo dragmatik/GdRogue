@@ -3,7 +3,7 @@ extends Node
 # Imports
 @onready var enemy_health: float = $"..".HEALTH
 @onready var enemy_health_drop: float = $"..".HEALTH
-@onready var body_node: Node2D = $".."
+@onready var body_node: CharacterBody2D = $".."
 @onready var sprite = $"../Sprite" # dynamic typing (Sprite2D & Animatedsprite2D)
 @onready var filter: AnimationPlayer = $"../Filter"
 @onready var center_node: Node2D = $"../Collider"
@@ -31,12 +31,17 @@ var bolt_on: bool = false
 var bolt_frequency: float = 1.3
 var bolt_timer: float = 0.0
 
+# Slow Variables
+var slow_on: bool = false
+var slow_frequency: float = 5
+var slow_timer: float = 0.0
+
 # Preloads
-var hit_scene: PackedScene = preload("res://Scenes/Effects/Textures/Hit_impact.tscn")
-var claw_scene: PackedScene = preload("res://Scenes/Effects/Textures/Claw.tscn")
-var blood_scene: PackedScene = preload("res://Scenes/Effects/Particles/Blood.tscn")
-var thunder_scene: PackedScene = preload("res://Scenes/Skills/Ability_Thunder.tscn")
-var bolt_scene: PackedScene = preload("res://Scenes/Skills/Ability_Thunder_2.tscn")
+var hit_scene: PackedScene = preload("res://Scenes/VFX/Textures/Hit_impact.tscn")
+var claw_scene: PackedScene = preload("res://Scenes/VFX/Textures/Claw.tscn")
+var blood_scene: PackedScene = preload("res://Scenes/VFX/Particles/Blood.tscn")
+var thunder_scene: PackedScene = preload("res://Scenes/Abilities & Skills/Thunder.tscn")
+var bolt_scene: PackedScene = preload("res://Scenes/Abilities & Skills/Bolt.tscn")
 
 func _process(delta: float) -> void:
 	# handle dynamic health decrease

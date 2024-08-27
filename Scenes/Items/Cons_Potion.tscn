@@ -1,0 +1,78 @@
+[gd_scene load_steps=8 format=3 uid="uid://dp7ej7duelaw6"]
+
+[ext_resource type="Script" path="res://Scripts/Items/Default_item.gd" id="1_eyt8e"]
+[ext_resource type="Resource" uid="uid://cyvo4wa1dxi88" path="res://Resources/Items_data/health_potion.tres" id="2_3ni3o"]
+[ext_resource type="Texture2D" uid="uid://bx6v3xo8gvwtt" path="res://Sprites/Lighting/light.png" id="2_gm55f"]
+[ext_resource type="PackedScene" uid="uid://ci2qpqaa7joma" path="res://Scenes/Items/Item_popup.tscn" id="4_j33em"]
+
+[sub_resource type="Animation" id="Animation_yup57"]
+resource_name = "idle"
+length = 0.800007
+loop_mode = 1
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(0.5, 2, 0.5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -10), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(0.5, 2, 0.5),
+"update": 0,
+"values": [Vector2(1.1, 0.9), Vector2(0.95, 1.05), Vector2(1.1, 0.9)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d7hey"]
+_data = {
+"idle": SubResource("Animation_yup57")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oai7w"]
+radius = 23.0868
+
+[node name="Potion" type="Node2D"]
+script = ExtResource("1_eyt8e")
+item_data = ExtResource("2_3ni3o")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(1.1, 0.9)
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite")
+libraries = {
+"": SubResource("AnimationLibrary_d7hey")
+}
+autoplay = "idle"
+
+[node name="Light" type="PointLight2D" parent="."]
+position = Vector2(0, -8.55013)
+scale = Vector2(0.971748, 1.02825)
+color = Color(0.999927, 0.421367, 0.393368, 1)
+energy = 0.5
+texture = ExtResource("2_gm55f")
+texture_scale = 0.2
+
+[node name="health_recover" type="Area2D" parent="."]
+collision_layer = 64
+
+[node name="Collider" type="CollisionShape2D" parent="health_recover"]
+shape = SubResource("CircleShape2D_oai7w")
+debug_color = Color(1, 0.509092, 0.51935, 0.0588235)
+
+[node name="Popup" parent="." instance=ExtResource("4_j33em")]
+
+[connection signal="area_entered" from="health_recover" to="." method="_on_collect_area_entered"]
+[connection signal="area_exited" from="health_recover" to="." method="_on_collect_area_exited"]

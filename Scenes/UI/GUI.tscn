@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dtxrcu58gojad"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Interface.gd" id="1_kie2f"]
-[ext_resource type="LabelSettings" uid="uid://blb3qrnyptmll" path="res://Interface/Label_UI.tres" id="4_xgfq8"]
+[ext_resource type="LabelSettings" uid="uid://blb3qrnyptmll" path="res://Interface/Text/Label_UI.tres" id="4_xgfq8"]
 [ext_resource type="Texture2D" uid="uid://ckpsiw3idrwdk" path="res://Interface/UI/Under.png" id="5_vafj8"]
 [ext_resource type="Texture2D" uid="uid://c4l8dwuohfw2r" path="res://Interface/Frames/over_3.png" id="7_fmun6"]
 [ext_resource type="Texture2D" uid="uid://c4nm2a2vhlfq7" path="res://Sprites/Items/Gold.png" id="7_nwtsu"]
@@ -470,7 +470,6 @@ self_modulate = Color(1, 1, 0.294118, 1)
 position = Vector2(1655, 1012)
 scale = Vector2(3, 3)
 texture = ExtResource("7_nwtsu")
-hframes = 5
 
 [node name="Map" type="PanelContainer" parent="."]
 anchors_preset = 3

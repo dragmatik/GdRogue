@@ -3,8 +3,13 @@ extends Node2D
 var Near_player: bool = false
 var player: Area2D = null
 
+@onready var sprite: Sprite2D = $Sprite
 @onready var UI: CanvasLayer = $Popup/UI
 @onready var Item_tab: NinePatchRect = $Popup/UI/Panel
+@export var item_data: Items
+
+func _ready() -> void:
+	sprite.texture = item_data.item_icon
 
 func _process(_delta: float) -> void:
 	

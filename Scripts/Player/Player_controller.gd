@@ -266,7 +266,7 @@ func reset_state() -> void:
 	attack_node.is_attacking = false
 
 # Ghost effect
-var ghost_scene: PackedScene = preload("res://Scenes/Effects/Ghost.tscn")
+var ghost_scene: PackedScene = preload("res://Scenes/VFX/Textures/Ghost.tscn")
 var ghost_interval: float = 0.08
 var ghost_timer: float = 0.0
 
@@ -290,7 +290,7 @@ func ghost_maker(delta: float) -> void:
 func dust_maker(delta: float, x: float, interval: float, pos: Vector2) -> void:
 	dust_timer += delta
 	if dust_timer >= interval:
-		var dust_scene: PackedScene = preload("res://Scenes/Effects/Particles/Dust.tscn")
+		var dust_scene: PackedScene = preload("res://Scenes/VFX/Particles/Dust.tscn")
 		var dust: Node2D = dust_scene.instantiate()
 		get_parent().add_child(dust)
 		dust.global_position = pos

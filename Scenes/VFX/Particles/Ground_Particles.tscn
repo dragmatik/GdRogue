@@ -1,0 +1,125 @@
+[gd_scene load_steps=19 format=3 uid="uid://dotycu1qrddtf"]
+
+[ext_resource type="Material" uid="uid://fjig21d7ovf8" path="res://Particles/Ground_Rocks.tres" id="1_n2q2g"]
+[ext_resource type="Texture2D" uid="uid://mgnsjnamcpom" path="res://Sprites/VFX/Particles/Rock.png" id="1_qdqek"]
+[ext_resource type="Texture2D" uid="uid://d4hod85v62jm4" path="res://Sprites/VFX/Particles/Flame.png" id="3_1aju1"]
+[ext_resource type="Script" path="res://Scripts/VFX/Particles/Ground_Particles.gd" id="3_tmq4c"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_oe4vv"]
+diffuse_texture = ExtResource("1_qdqek")
+
+[sub_resource type="Gradient" id="Gradient_tqxg8"]
+offsets = PackedFloat32Array(0, 0.691964, 1)
+colors = PackedColorArray(0.427451, 0.298039, 0, 1, 0.0650471, 0.00604348, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gma4l"]
+gradient = SubResource("Gradient_tqxg8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_20dt2"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, -1, 0)
+spread = 120.0
+initial_velocity_min = 120.0
+initial_velocity_max = 120.0
+gravity = Vector3(0, 300, 0)
+linear_accel_min = -100.0
+linear_accel_max = -80.0
+scale_min = 0.08
+scale_max = 0.08
+color = Color(0.720467, 0.720468, 0.720467, 0.996078)
+color_ramp = SubResource("GradientTexture1D_gma4l")
+collision_mode = 1
+collision_friction = 0.25
+collision_bounce = 0.35
+collision_use_scale = true
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_hyvru"]
+diffuse_texture = ExtResource("1_qdqek")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_l1ua3"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_dmkrb"]
+offsets = PackedFloat32Array(0, 0.217778, 1)
+colors = PackedColorArray(0.184306, 0.175067, 0.163335, 1, 0.25801, 0.237754, 0.215529, 1, 0.439216, 0.427451, 0.435294, 0.00392157)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pi40e"]
+gradient = SubResource("Gradient_dmkrb")
+width = 100
+
+[sub_resource type="Curve" id="Curve_imito"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nsq33"]
+curve = SubResource("Curve_imito")
+
+[sub_resource type="Curve" id="Curve_snuvs"]
+_data = [Vector2(0, 0.495041), 0.0, 0.0, 0, 0, Vector2(1, 0.333884), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cyw7d"]
+curve = SubResource("Curve_snuvs")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3lksn"]
+resource_local_to_scene = true
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+angle_max = 720.0
+direction = Vector3(0, -1, 0)
+spread = 115.0
+initial_velocity_min = 45.0
+initial_velocity_max = 60.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.4
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_cyw7d")
+color = Color(0.65834, 0.65834, 0.65834, 0.262745)
+color_ramp = SubResource("GradientTexture1D_pi40e")
+emission_curve = SubResource("CurveTexture_nsq33")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4n0rt"]
+polygon = PackedVector2Array(-31, 5, 32, 5, 32, 10, -31, 10)
+
+[node name="Ground_Particles" type="GPUParticles2D"]
+position = Vector2(0, -5)
+amount = 40
+process_material = ExtResource("1_n2q2g")
+texture = SubResource("CanvasTexture_oe4vv")
+lifetime = 1.5
+explosiveness = 1.0
+randomness = 0.5
+fixed_fps = 60
+collision_base_size = 0.3
+script = ExtResource("3_tmq4c")
+
+[node name="Sub_Particles" type="GPUParticles2D" parent="."]
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_20dt2")
+texture = SubResource("CanvasTexture_hyvru")
+lifetime = 0.8
+explosiveness = 1.0
+randomness = 0.5
+fixed_fps = 60
+collision_base_size = 0.3
+
+[node name="Dust" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_l1ua3")
+amount = 45
+process_material = SubResource("ParticleProcessMaterial_3lksn")
+texture = ExtResource("3_1aju1")
+lifetime = 1.25
+speed_scale = 0.35
+explosiveness = 1.0
+randomness = 0.5
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Test_occluder" type="LightOccluder2D" parent="."]
+visible = false
+occluder = SubResource("OccluderPolygon2D_4n0rt")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

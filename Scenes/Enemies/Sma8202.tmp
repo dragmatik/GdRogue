@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/Enemies/En_Smasher/Default_States/D_Death_state.gd" id="7_y8wlu"]
 [ext_resource type="Script" path="res://Scripts/Enemies/En_Smasher/Default_States/D_Stun_state.gd" id="8_p0e8l"]
 [ext_resource type="Script" path="res://Scripts/Enemies/En_Smasher/Default_States/D_Hit_state.gd" id="9_rr5od"]
-[ext_resource type="PackedScene" uid="uid://bjnubgmxlo2y6" path="res://Scenes/Effects/particle_funcs_node.tscn" id="13_14k0g"]
+[ext_resource type="PackedScene" uid="uid://bjnubgmxlo2y6" path="res://Scenes/VFX/particle_funcs_node.tscn" id="13_14k0g"]
 [ext_resource type="SpriteFrames" uid="uid://es4a2ptcddil" path="res://Sprites/Enemies/Smasher/boss_treatoni.tres" id="13_ef4vd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c4qnd"]

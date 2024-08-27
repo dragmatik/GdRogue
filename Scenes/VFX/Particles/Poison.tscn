@@ -1,0 +1,68 @@
+[gd_scene load_steps=13 format=3 uid="uid://1avonhp1jfv1"]
+
+[ext_resource type="Texture2D" uid="uid://ccgwrleewsm8i" path="res://Sprites/VFX/Particles/Poison.png" id="1_0cffr"]
+[ext_resource type="Material" uid="uid://cke8qv7a43e8g" path="res://Particles/Poison.tres" id="1_wwmaj"]
+[ext_resource type="Texture2D" uid="uid://bfej63ysjhc0k" path="res://Sprites/VFX/Particles/Skull.png" id="2_hiy0i"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_l1ua3"]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_33rsa"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_30u1r"]
+offsets = PackedFloat32Array(0, 0.13913, 0.895652, 1)
+colors = PackedColorArray(0.607843, 0.894118, 0.596078, 0.552941, 0.0818903, 0.616678, 0.084673, 1, 0.174912, 0.365463, 0.17312, 1, 0.4, 0.85098, 0.403922, 0.466667)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_l2um6"]
+gradient = SubResource("Gradient_30u1r")
+width = 100
+
+[sub_resource type="Curve" id="Curve_s8c02"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wgeq1"]
+curve = SubResource("Curve_s8c02")
+
+[sub_resource type="Curve" id="Curve_avfwh"]
+_data = [Vector2(0, 0.591129), 0.0, 0.077281, 0, 0, Vector2(1, 0.800806), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_p1t54"]
+curve = SubResource("Curve_avfwh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8w2lq"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 100.0
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_p1t54")
+color = Color(1, 1, 1, 0.470588)
+color_ramp = SubResource("GradientTexture1D_l2um6")
+emission_curve = SubResource("CurveTexture_wgeq1")
+
+[node name="Poison" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_l1ua3")
+amount = 18
+sub_emitter = NodePath("Skull")
+process_material = ExtResource("1_wwmaj")
+texture = ExtResource("1_0cffr")
+lifetime = 1.65
+speed_scale = 0.5
+randomness = 0.5
+
+[node name="Skull" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_33rsa")
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_8w2lq")
+texture = ExtResource("2_hiy0i")
+lifetime = 1.65
+speed_scale = 0.5
+explosiveness = 0.1
+randomness = 0.5

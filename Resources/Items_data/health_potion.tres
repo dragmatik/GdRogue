@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Items" load_steps=3 format=3 uid="uid://cyvo4wa1dxi88"]
+
+[ext_resource type="Texture2D" uid="uid://dardsvno4o46w" path="res://Sprites/Items/Potion_icon.png" id="1_2lyha"]
+[ext_resource type="Script" path="res://Resources/Items_data/1_Item_class.gd" id="2_smnfq"]
+
+[resource]
+script = ExtResource("2_smnfq")
+item_name = "  Health Potion"
+item_type = "Consumable"
+item_desc = "Restore 50 Health"
+item_icon = ExtResource("1_2lyha")

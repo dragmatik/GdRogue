@@ -41,7 +41,7 @@ func _physics_process(delta):
 			$States/Stun_state.stun_enemy()
 
 # Get fire scene
-var fire_scene = preload("res://Scenes/Enemies/Skills/Flame.tscn")
+var fire_scene = preload("res://Scenes/Enemies/Attacks/Flame.tscn")
 
 func create_fire():
 	var direction = -1 if $Sprite.flip_h else 1
@@ -113,7 +113,7 @@ func Spawn_coins():
 		coin.global_position = $Sprite.global_position
 
 # Ghost effect
-var ghost_scene = preload("res://Scenes/Effects/Ghost.tscn")
+var ghost_scene = preload("res://Scenes/VFX/Textures/Ghost.tscn")
 var ghost_interval = 0.1
 var ghost_timer = 0.0
 

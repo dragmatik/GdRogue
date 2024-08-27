@@ -1,6 +1,6 @@
 [gd_scene load_steps=31 format=3 uid="uid://bdv5h6fjav3v6"]
 
-[ext_resource type="Texture2D" uid="uid://bx6v3xo8gvwtt" path="res://Sprites/Environment/light.png" id="1_85odm"]
+[ext_resource type="Texture2D" uid="uid://bx6v3xo8gvwtt" path="res://Sprites/Lighting/light.png" id="1_85odm"]
 [ext_resource type="Script" path="res://Scripts/Enemies/En_Smasher/Smasher.gd" id="1_pchjo"]
 [ext_resource type="Script" path="res://Scripts/Enemies/En_Smasher/Default_States/D_Idle_state.gd" id="4_8jcu3"]
 [ext_resource type="PackedScene" uid="uid://caav3i30vocuh" path="res://Scenes/Enemies/Health_bar.tscn" id="4_p35y2"]
@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://Scripts/Enemies/En_Smasher/Default_States/D_Stun_state.gd" id="8_p0e8l"]
 [ext_resource type="Script" path="res://Scripts/Enemies/En_Smasher/Default_States/D_Hit_state.gd" id="9_rr5od"]
 [ext_resource type="SpriteFrames" uid="uid://es4a2ptcddil" path="res://Sprites/Enemies/Smasher/boss_treatoni.tres" id="12_c3wl7"]
-[ext_resource type="PackedScene" uid="uid://bjnubgmxlo2y6" path="res://Scenes/Effects/particle_funcs_node.tscn" id="13_14k0g"]
+[ext_resource type="PackedScene" uid="uid://bjnubgmxlo2y6" path="res://Scenes/VFX/Particle_emitter.tscn" id="13_14k0g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c4qnd"]
 shader = ExtResource("4_tlwdy")

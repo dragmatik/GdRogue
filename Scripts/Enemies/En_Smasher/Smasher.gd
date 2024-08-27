@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 # Constants
 const HEALTH = 1000
-const SPEED = 1.5
+var SPEED = 1.5
 const IDLE_SPEED = 53
 const ATTACK_COOLDOWN = 2
 
@@ -97,7 +97,7 @@ func Spawn_coins():
 		coin.global_position = $Sprite.global_position
 
 # Ghost effect
-var ghost_scene = preload("res://Scenes/Effects/Ghost.tscn")
+var ghost_scene = preload("res://Scenes/VFX/Textures/Ghost.tscn")
 var ghost_interval = 0.1
 var ghost_timer = 0.0
 

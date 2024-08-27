@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bjnubgmxlo2y6"]
-
-[ext_resource type="Script" path="res://Scripts/Effects/Particle_functions.gd" id="1_ofdqi"]
-
-[node name="Particle_effects" type="Node2D"]
-script = ExtResource("1_ofdqi")

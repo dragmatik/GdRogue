@@ -42,7 +42,7 @@ func _physics_process(delta):
 
 # Dynamic Projectile
 func shoot():
-	var projectile = preload("res://Scenes/Enemies/Skills/Projectile_xy.tscn")
+	var projectile = preload("res://Scenes/Enemies/Attacks/Projectile_xy.tscn")
 	var instance = projectile.instantiate()
 	get_parent().add_child(instance)
 	instance.global_position = $Projectile.global_position
@@ -102,7 +102,7 @@ func Spawn_coins():
 		coin.global_position = $Sprite.global_position
 
 # Ghost effect
-var ghost_scene = preload("res://Scenes/Effects/Ghost.tscn")
+var ghost_scene = preload("res://Scenes/VFX/Textures/Ghost.tscn")
 var ghost_interval = 0.1
 var ghost_timer = 0.0
 

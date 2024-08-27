@@ -1,6 +1,6 @@
 [gd_scene load_steps=30 format=3 uid="uid://y3g61qind5r2"]
 
-[ext_resource type="Texture2D" uid="uid://bx6v3xo8gvwtt" path="res://Sprites/Environment/light.png" id="1_gw3b8"]
+[ext_resource type="Texture2D" uid="uid://bx6v3xo8gvwtt" path="res://Sprites/Lighting/light.png" id="1_gw3b8"]
 [ext_resource type="Script" path="res://Scripts/Enemies/En_Earthshaker/Earthshaker.gd" id="2_iwjfj"]
 [ext_resource type="Script" path="res://Scripts/Enemies/System/Damage_handler.gd" id="3_octrl"]
 [ext_resource type="PackedScene" uid="uid://caav3i30vocuh" path="res://Scenes/Enemies/Health_bar.tscn" id="4_44wbx"]
@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://Scripts/Enemies/En_Earthshaker/Earthshaker_States/E_Hit_state.gd" id="10_m5q0b"]
 [ext_resource type="Shader" path="res://Shaders/Flash.gdshader" id="11_4sy58"]
 [ext_resource type="SpriteFrames" uid="uid://b3odbs5klmo35" path="res://Sprites/Enemies/Earthshaker/neutral_boulderhurler.tres" id="12_278rq"]
-[ext_resource type="PackedScene" uid="uid://bjnubgmxlo2y6" path="res://Scenes/Effects/particle_funcs_node.tscn" id="13_lowkh"]
+[ext_resource type="PackedScene" uid="uid://bjnubgmxlo2y6" path="res://Scenes/VFX/Particle_emitter.tscn" id="13_lowkh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c4qnd"]
 shader = ExtResource("11_4sy58")

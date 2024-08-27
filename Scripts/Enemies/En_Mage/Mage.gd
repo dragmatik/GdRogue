@@ -38,8 +38,8 @@ func _physics_process(delta):
 			$States/Stun_state.stun_enemy()
 
 # Get bolt scene
-var bolt = preload("res://Scenes/Enemies/Skills/Lightning.tscn")
-var warning = preload("res://Scenes/Enemies/Skills/Lightning_2.tscn")
+var bolt = preload("res://Scenes/Enemies/Attacks/Lightning.tscn")
+var warning = preload("res://Scenes/Enemies/Attacks/Lightning_2.tscn")
 var player_target_x
 var player_target_y
 
@@ -145,7 +145,7 @@ func Spawn_coins():
 		coin.global_position = $Sprite.global_position
 
 # Ghost effect
-var ghost_scene = preload("res://Scenes/Effects/Ghost.tscn")
+var ghost_scene = preload("res://Scenes/VFX/Textures/Ghost.tscn")
 var ghost_interval = 0.1
 var ghost_timer = 0.0
 

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Items" load_steps=3 format=3 uid="uid://s71k02b8wvke"]
+
+[ext_resource type="Texture2D" uid="uid://bwfrfienmf6xb" path="res://Sprites/Items/Sharpner_icon.png" id="1_6qdxn"]
+[ext_resource type="Script" path="res://Resources/Items_data/1_Item_class.gd" id="2_r3wwx"]
+
+[resource]
+script = ExtResource("2_r3wwx")
+item_name = "  Blade Sharpner"
+item_type = "Upgrade"
+item_desc = "Increases attack power by 15%."
+item_icon = ExtResource("1_6qdxn")

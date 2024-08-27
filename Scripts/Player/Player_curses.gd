@@ -12,8 +12,8 @@ var bleeding_timer: float = 0.0
 var get_blood_scene: Node2D
 
 # Preloads
-var Claw: PackedScene = preload("res://Scenes/Effects/Textures/Claw.tscn")
-var Blood: PackedScene = preload("res://Scenes/Effects/Particles/Blood.tscn")
+var Claw: PackedScene = preload("res://Scenes/VFX/Textures/Claw.tscn")
+var Blood: PackedScene = preload("res://Scenes/VFX/Particles/Blood.tscn")
 
 func _process(delta: float) -> void:
 	# Handle bleeding effect

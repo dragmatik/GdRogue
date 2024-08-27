@@ -1,59 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://dvo4sfhe4i3ee"]
+[gd_scene load_steps=8 format=3 uid="uid://dvo4sfhe4i3ee"]
 
 [ext_resource type="Script" path="res://Scripts/Items/Coin_item.gd" id="1_3h2yj"]
 [ext_resource type="Texture2D" uid="uid://c4nm2a2vhlfq7" path="res://Sprites/Items/Gold.png" id="2_s843x"]
-[ext_resource type="Texture2D" uid="uid://bx6v3xo8gvwtt" path="res://Sprites/Environment/light.png" id="3_1fh7d"]
+[ext_resource type="Texture2D" uid="uid://bx6v3xo8gvwtt" path="res://Sprites/Lighting/light.png" id="3_1fh7d"]
 
-[sub_resource type="Animation" id="Animation_fy2ht"]
-resource_name = "Collected"
-length = 0.50001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [1, 2, 3, 4]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"expire"
-}]
-}
+[sub_resource type="Curve" id="Curve_88t21"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.164835), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="Animation" id="Animation_wtbxp"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_yr6i0"]
-_data = {
-"Collected": SubResource("Animation_fy2ht"),
-"RESET": SubResource("Animation_wtbxp")
-}
+[sub_resource type="Gradient" id="Gradient_gx4d2"]
+offsets = PackedFloat32Array(0, 0.680365, 1)
+colors = PackedColorArray(1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5fsje"]
 radius = 4.0
@@ -64,16 +21,49 @@ radius = 95.0
 [node name="Coins" type="Node2D"]
 script = ExtResource("1_3h2yj")
 
+[node name="Particles" type="CPUParticles2D" parent="."]
+amount = 15
+lifetime = 0.75
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 15.0
+initial_velocity_max = 20.0
+linear_accel_min = -20.0
+linear_accel_max = -10.0
+radial_accel_min = -8.0
+damping_max = 15.0
+scale_amount_curve = SubResource("Curve_88t21")
+color = Color(1, 1, 0.34902, 1)
+
+[node name="Collected" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 30
+one_shot = true
+speed_scale = 2.5
+explosiveness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 22.0
+initial_velocity_max = 28.0
+linear_accel_min = -20.0
+linear_accel_max = -10.0
+radial_accel_min = -8.0
+damping_max = 10.0
+scale_amount_curve = SubResource("Curve_88t21")
+color = Color(0.99758, 1, 0.958284, 1)
+color_ramp = SubResource("Gradient_gx4d2")
+
 [node name="Sprite" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 0.109804, 1)
+self_modulate = Color(0.735685, 0.735164, 0, 1)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_s843x")
-hframes = 5
 
-[node name="Animation" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_yr6i0")
-}
+[node name="Shine" type="PointLight2D" parent="."]
+energy = 0.5
+texture = ExtResource("3_1fh7d")
+texture_scale = 0.15
 
 [node name="Coin" type="Area2D" parent="."]
 collision_layer = 64
@@ -89,14 +79,12 @@ collision_layer = 64
 shape = SubResource("CircleShape2D_dk3lu")
 debug_color = Color(6.35326e-06, 0.64237, 0.324151, 0)
 
-[node name="Shine" type="PointLight2D" parent="."]
-energy = 0.1
-texture = ExtResource("3_1fh7d")
-texture_scale = 0.05
-
 [node name="Timer" type="Timer" parent="."]
 
-[connection signal="area_entered" from="Coin" to="." method="_on_collected_area_entered"]
+[node name="Collected_timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Coin" to="." method="_on_coin_body_entered"]
 [connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]
 [connection signal="body_exited" from="Detector" to="." method="_on_detector_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Collected_timer" to="." method="_on_collected_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://bfaxhjpiym61g"]
+[gd_scene load_steps=58 format=3 uid="uid://bfaxhjpiym61g"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player_Controller.gd" id="1_lkusj"]
 [ext_resource type="Script" path="res://Scripts/Player/Get_items.gd" id="2_dnb1c"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b7r02dm64auyn" path="res://Scenes/Gameplay/Camera.tscn" id="3_6yvgn"]
 [ext_resource type="Script" path="res://Scripts/Player/Player_Curses.gd" id="3_ccwwm"]
 [ext_resource type="Texture2D" uid="uid://s3ekiqex3645" path="res://Sprites/Player/Player.png" id="3_hmrpb"]
+[ext_resource type="Texture2D" uid="uid://b5axrbd6ayqt3" path="res://Sprites/Player/Player_n.png" id="4_f7jkc"]
 [ext_resource type="Script" path="res://Scripts/Player/Player_Primary.gd" id="4_xjvng"]
 [ext_resource type="Shader" path="res://Shaders/Flash.gdshader" id="5_cxypv"]
 [ext_resource type="Script" path="res://Scripts/Player/Player_Secondary.gd" id="5_i1lc1"]
@@ -15,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dtxrcu58gojad" path="res://Scenes/UI/GUI.tscn" id="11_wg6jn"]
 [ext_resource type="Script" path="res://Scripts/Player/Weapon_Bonus.gd" id="12_wovhv"]
 [ext_resource type="PackedScene" uid="uid://jcik2dblgtim" path="res://Scenes/UI/Options.tscn" id="13_klct1"]
+[ext_resource type="Texture2D" uid="uid://bx6v3xo8gvwtt" path="res://Sprites/Lighting/light.png" id="16_fxdi8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w6ngs"]
 shader = ExtResource("5_cxypv")
@@ -25,6 +27,10 @@ shader_parameter/outline_color = Vector4(0.5, 0.5, 0.2, 0.1)
 shader_parameter/selection_color = Vector4(1, 1, 1, 1)
 shader_parameter/color_intensity = 0.0
 shader_parameter/pixel_size = 1
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ci5yj"]
+diffuse_texture = ExtResource("3_hmrpb")
+normal_texture = ExtResource("4_f7jkc")
 
 [sub_resource type="Animation" id="Animation_410vu"]
 length = 0.001
@@ -875,7 +881,7 @@ script = ExtResource("1_lkusj")
 material = SubResource("ShaderMaterial_w6ngs")
 position = Vector2(-9.53674e-07, -21)
 scale = Vector2(0.8, 0.8)
-texture = ExtResource("3_hmrpb")
+texture = SubResource("CanvasTexture_ci5yj")
 hframes = 8
 vframes = 40
 
@@ -1007,6 +1013,11 @@ collision_mask = 32
 [node name="Collider" type="CollisionShape2D" parent="Hanger"]
 shape = SubResource("RectangleShape2D_morq2")
 debug_color = Color(0, 0.901961, 0.262745, 0.313726)
+
+[node name="Player_light" type="PointLight2D" parent="."]
+energy = 0.2
+texture = ExtResource("16_fxdi8")
+texture_scale = 0.25
 
 [node name="Canvas" parent="." instance=ExtResource("11_wg6jn")]
 

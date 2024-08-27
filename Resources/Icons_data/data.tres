@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Icons" load_steps=7 format=3 uid="uid://yhvcyf3hl7wo"]
 
-[ext_resource type="Script" path="res://Resources/Icon_class.gd" id="1_ce8cd"]
+[ext_resource type="Script" path="res://Resources/Icons_data/1_Icon_class.gd" id="1_thx3u"]
 [ext_resource type="Texture2D" uid="uid://dxjbysvxnrd2x" path="res://Interface/Icons/2.png" id="2_7qt4n"]
 [ext_resource type="Texture2D" uid="uid://btoobkfnni176" path="res://Interface/Icons/4.png" id="3_evk5l"]
 [ext_resource type="Texture2D" uid="uid://d0368fgvqumjt" path="res://Interface/Icons/3.png" id="4_jm2us"]
@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bpi3svvld0wdi" path="res://Interface/Icons/1.png" id="6_ptlc5"]
 
 [resource]
-script = ExtResource("1_ce8cd")
+script = ExtResource("1_thx3u")
 texture_map = {
 "Bleed": ExtResource("2_7qt4n"),
 "Bolt": ExtResource("3_evk5l"),
