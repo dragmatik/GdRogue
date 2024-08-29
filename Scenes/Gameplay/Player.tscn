@@ -964,11 +964,11 @@ collision_mask = 64
 shape = SubResource("CircleShape2D_wf0ia")
 debug_color = Color(0.223529, 0.607843, 0.552941, 0.172549)
 
-[node name="Get_abilities" type="Node2D" parent="."]
-script = ExtResource("11_843ot")
-
 [node name="Items" type="Node2D" parent="."]
 script = ExtResource("11_3i7ak")
+
+[node name="Get_abilities" type="Node2D" parent="."]
+script = ExtResource("11_843ot")
 
 [node name="Abilities" type="Node2D" parent="."]
 script = ExtResource("7_v5mpe")

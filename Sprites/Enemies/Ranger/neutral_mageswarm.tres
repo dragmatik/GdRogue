@@ -442,7 +442,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"breathing",
-"speed": 9.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,

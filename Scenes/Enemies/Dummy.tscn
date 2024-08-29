@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://coaxwkfe7faya"]
 
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Dummy/Dummy.gd" id="1_0q12y"]
+[ext_resource type="Script" path="res://Scripts/Enemies/dummy.gd" id="1_0q12y"]
 [ext_resource type="Script" path="res://Scripts/Enemies/System/Damage_handler.gd" id="2_e0hf2"]
 [ext_resource type="PackedScene" uid="uid://caav3i30vocuh" path="res://Scenes/Enemies/Health_bar.tscn" id="3_eooww"]
 [ext_resource type="Shader" path="res://Shaders/Flash.gdshader" id="4_hvm56"]

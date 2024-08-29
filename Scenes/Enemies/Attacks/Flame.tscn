@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://depnljm0j32df"]
 
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Necro/N_Fire.gd" id="1_npyka"]
+[ext_resource type="Script" path="res://Scripts/Enemies/Attacks/Fire_spell.gd" id="1_npyka"]
 [ext_resource type="Material" uid="uid://b3jhxv3tfpo1g" path="res://Particles/Flame.tres" id="2_0uosj"]
 [ext_resource type="Texture2D" uid="uid://d4hod85v62jm4" path="res://Sprites/VFX/Particles/Flame.png" id="2_ailtb"]
 [ext_resource type="Texture2D" uid="uid://bx6v3xo8gvwtt" path="res://Sprites/Lighting/light.png" id="3_uqt5f"]
@@ -45,6 +45,7 @@ script = ExtResource("1_npyka")
 
 [node name="Flame" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_l1ua3")
+position = Vector2(0, -4)
 process_material = ExtResource("2_0uosj")
 texture = ExtResource("2_ailtb")
 explosiveness = 0.1
@@ -60,11 +61,11 @@ explosiveness = 0.1
 randomness = 0.5
 
 [node name="Area" type="Area2D" parent="."]
+position = Vector2(0, -4)
 collision_layer = 16
 metadata/fire = 25
 
 [node name="Collider" type="CollisionShape2D" parent="Area"]
-position = Vector2(0, -6)
 shape = SubResource("CapsuleShape2D_xjld5")
 
 [node name="Light" type="PointLight2D" parent="."]

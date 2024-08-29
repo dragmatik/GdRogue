@@ -1,8 +1,8 @@
 extends Node
 
 # Imports
-@onready var enemy_health: float = $"..".HEALTH
-@onready var enemy_health_drop: float = $"..".HEALTH
+@onready var enemy_health: float = $"..".Health
+@onready var enemy_health_drop: float = $"..".Health
 @onready var body_node: CharacterBody2D = $".."
 @onready var sprite = $"../Sprite" # dynamic typing (Sprite2D & Animatedsprite2D)
 @onready var filter: AnimationPlayer = $"../Filter"
@@ -37,7 +37,7 @@ var slow_frequency: float = 5
 var slow_timer: float = 0.0
 
 # Preloads
-var hit_scene: PackedScene = preload("res://Scenes/VFX/Textures/Hit_impact.tscn")
+var hit_scene: PackedScene = preload("res://Scenes/VFX/Particles/Hit.tscn")
 var claw_scene: PackedScene = preload("res://Scenes/VFX/Textures/Claw.tscn")
 var blood_scene: PackedScene = preload("res://Scenes/VFX/Particles/Blood.tscn")
 var thunder_scene: PackedScene = preload("res://Scenes/Abilities & Skills/Thunder.tscn")
@@ -72,10 +72,10 @@ func _process(delta: float) -> void:
 
 func handle_damage(area: Area2D) -> void:
 	# Handle Base & Abilities damage
+	create_impact_effect()
 	match area.name:
 		"Slash":
 			apply_damage(SingletonBools.real_damage, Color(1, 1, 1, 1))
-			create_impact_effect()
 			# Handle special damage types
 			if SingletonBools.Is_Bleed:
 				start_bleeding_effect()
@@ -104,7 +104,6 @@ func apply_damage(damage_amount: float, color: Color) -> void:
 func create_impact_effect() -> void:
 	var get_hit: Node2D = hit_scene.instantiate()
 	get_parent().add_child(get_hit)
-	get_hit.impact(sprite.flip_h) # Flip if necessary
 	get_hit.global_position = center_node.global_position
 
 func start_bleeding_effect() -> void:

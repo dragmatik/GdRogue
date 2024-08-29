@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://tok5vsv4olbt"]
 
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Winged/W_Projectile.gd" id="1_3iwk6"]
+[ext_resource type="Script" path="res://Scripts/Enemies/Attacks/multidirec_proj.gd" id="1_3iwk6"]
 [ext_resource type="Material" uid="uid://c6t180enn4jyh" path="res://Particles/Flame_ball.tres" id="3_jtybo"]
 [ext_resource type="Texture2D" uid="uid://d4hod85v62jm4" path="res://Sprites/VFX/Particles/Flame.png" id="4_2jokm"]
 [ext_resource type="Texture2D" uid="uid://bx6v3xo8gvwtt" path="res://Sprites/Lighting/light.png" id="5_2pasg"]

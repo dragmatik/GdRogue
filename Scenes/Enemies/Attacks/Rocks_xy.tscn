@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://cox0qivb4fvbo"]
 
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Earthshaker/E_Rock.gd" id="1_s7g6i"]
+[ext_resource type="Script" path="res://Scripts/Enemies/Attacks/throwable_proj.gd" id="1_s7g6i"]
 [ext_resource type="Texture2D" uid="uid://b7vtim1fty23a" path="res://Sprites/Abilities & Skills/Earth_projectile.png" id="2_a3yrj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y3m4o"]

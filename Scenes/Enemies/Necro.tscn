@@ -1,23 +1,18 @@
-[gd_scene load_steps=30 format=3 uid="uid://c8uaau87eirp3"]
+[gd_scene load_steps=25 format=3 uid="uid://bqv16q4iopuco"]
 
-[ext_resource type="Texture2D" uid="uid://bx6v3xo8gvwtt" path="res://Sprites/Lighting/light.png" id="1_koj1j"]
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Necro/Necro.gd" id="2_fa44h"]
-[ext_resource type="Script" path="res://Scripts/Enemies/System/Damage_handler.gd" id="3_k8dfw"]
-[ext_resource type="PackedScene" uid="uid://caav3i30vocuh" path="res://Scenes/Enemies/Health_bar.tscn" id="4_vfqrx"]
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Necro/Necro_States/N_Idle_state.gd" id="5_rcgol"]
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Necro/Necro_States/N_Chase_state.gd" id="6_fwuag"]
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Smasher/Default_States/D_Attack_state.gd" id="7_3ep7p"]
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Smasher/Default_States/D_Death_state.gd" id="8_dvhle"]
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Smasher/Default_States/D_Stun_state.gd" id="9_mx4l0"]
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Smasher/Default_States/D_Hit_state.gd" id="10_pe17p"]
-[ext_resource type="Shader" path="res://Shaders/Flash.gdshader" id="11_net0d"]
-[ext_resource type="SpriteFrames" uid="uid://nyb6ua3leec2" path="res://Sprites/Enemies/Necro/f4_phantasm.tres" id="12_vx872"]
+[ext_resource type="Script" path="res://Scripts/Enemies/System/Common.gd" id="1_ev3lc"]
+[ext_resource type="Resource" uid="uid://c056hcdn8t6gl" path="res://Resources/Enemies_stats/ground.tres" id="2_ypjwo"]
+[ext_resource type="Script" path="res://Scripts/Enemies/System/Damage_handler.gd" id="3_4ktwt"]
+[ext_resource type="PackedScene" uid="uid://caav3i30vocuh" path="res://Scenes/Enemies/Health_bar.tscn" id="4_4yy1o"]
+[ext_resource type="Script" path="res://Scripts/Enemies/necro.gd" id="5_ng546"]
+[ext_resource type="Shader" path="res://Shaders/Flash.gdshader" id="6_bueax"]
+[ext_resource type="SpriteFrames" uid="uid://nyb6ua3leec2" path="res://Sprites/Enemies/Necro/f4_phantasm.tres" id="7_wu1cv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c4qnd"]
-shader = ExtResource("11_net0d")
+shader = ExtResource("6_bueax")
 shader_parameter/Smooth = true
 shader_parameter/EnableOutline = false
-shader_parameter/width = 10.0
+shader_parameter/width = 8.0
 shader_parameter/outline_color = Vector4(1, 0, 0, 0.05)
 shader_parameter/selection_color = Vector4(1, 1, 1, 1)
 shader_parameter/color_intensity = 0.0
@@ -28,22 +23,34 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [&"breathing"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Attack/Area/Collider:disabled")
+tracks/1/path = NodePath("Sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Attack/Area/Collider:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -78,39 +85,45 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34]
 }
-tracks/2/type = "method"
+tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".")
+tracks/2/path = NodePath("Attack/Area/Collider:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"values": []
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Attack/Area/Collider:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.933334, 1.06667),
+"times": PackedFloat32Array(0, 0.933333, 1.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.933333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shake_ground"
+}]
+}
 tracks/4/type = "method"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath(".")
+tracks/4/path = NodePath("Unique")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(1.06667),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.933333, 1),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"Get_ground_particles"
+}, {
 "args": [],
 "method": &"create_fire"
 }]
@@ -147,7 +160,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_6fvjx"]
 resource_name = "death"
-length = 2.33334
+length = 1.26667
 step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -168,10 +181,10 @@ tracks/1/path = NodePath("Sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.533333, 0.6, 0.666667, 0.733333, 0.8, 0.866667, 0.933333, 1, 1.06667, 1.13333, 1.2, 1.26667, 1.33333, 1.4, 1.46667, 1.53333, 1.6, 1.66667, 1.73333, 1.8, 1.86667, 1.93333, 2, 2.06667, 2.13333, 2.2, 2.26667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.533333, 0.6, 0.666667, 0.733333, 0.8, 0.866667, 0.933333, 1, 1.06667, 1.13333, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34]
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
 }
 tracks/2/type = "method"
 tracks/2/imported = false
@@ -180,7 +193,7 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1),
+"times": PackedFloat32Array(1.2),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -216,10 +229,22 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1, 2]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Attack/Area/Collider:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_74yob"]
 resource_name = "idle"
-length = 1.46667
+length = 0.93334
 step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -240,10 +265,10 @@ tracks/1/path = NodePath("Sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.533333, 0.6, 0.666667, 0.733333, 0.8, 0.866667, 0.933334, 1, 1.06667, 1.13333, 1.2, 1.26667, 1.33333, 1.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.533333, 0.6, 0.666667, 0.733333, 0.8, 0.866667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 }
 
 [sub_resource type="Animation" id="Animation_ujtea"]
@@ -351,9 +376,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2r4kg"]
 size = Vector2(28, 41.75)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ohfhx"]
-radius = 17.0
-height = 46.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8d6cu"]
+radius = 29.0
+height = 60.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k0iaw"]
 radius = 24.0
@@ -366,61 +391,35 @@ size = Vector2(46.25, 42.125)
 radius = 24.0
 height = 48.0
 
-[node name="Necro" type="Node2D"]
-
-[node name="TestModulate" type="CanvasModulate" parent="."]
-visible = false
-color = Color(0.408329, 0.408329, 0.408329, 1)
-
-[node name="TestLight" type="PointLight2D" parent="."]
-visible = false
-position = Vector2(-37, -17)
-texture = ExtResource("1_koj1j")
-texture_scale = 0.5
+[node name="Smasher" type="Node2D"]
 
 [node name="Enemy" type="CharacterBody2D" parent="."]
 collision_layer = 4
 collision_mask = 2
-script = ExtResource("2_fa44h")
+script = ExtResource("1_ev3lc")
+stats = ExtResource("2_ypjwo")
 
 [node name="HP" type="Node2D" parent="Enemy"]
 position = Vector2(0, -9)
-script = ExtResource("3_k8dfw")
+script = ExtResource("3_4ktwt")
 
-[node name="Health" parent="Enemy/HP" instance=ExtResource("4_vfqrx")]
+[node name="Health" parent="Enemy/HP" instance=ExtResource("4_4yy1o")]
 
-[node name="States" type="Node2D" parent="Enemy"]
+[node name="Unique" type="Node" parent="Enemy"]
+script = ExtResource("5_ng546")
 
-[node name="Idle_state" type="Node2D" parent="Enemy/States"]
-script = ExtResource("5_rcgol")
+[node name="Timers" type="Node" parent="Enemy"]
 
-[node name="Turn_around" type="Timer" parent="Enemy/States/Idle_state"]
+[node name="Turn_around" type="Timer" parent="Enemy/Timers"]
 
-[node name="Chase_state" type="Node2D" parent="Enemy/States"]
-script = ExtResource("6_fwuag")
-
-[node name="Attack_state" type="Node2D" parent="Enemy/States"]
-script = ExtResource("7_3ep7p")
-
-[node name="Cooldown" type="Timer" parent="Enemy/States/Attack_state"]
-
-[node name="Death_state" type="Node2D" parent="Enemy/States"]
-script = ExtResource("8_dvhle")
-
-[node name="Stun_state" type="Node2D" parent="Enemy/States"]
-script = ExtResource("9_mx4l0")
-
-[node name="Stun" type="Timer" parent="Enemy/States/Stun_state"]
-one_shot = true
-
-[node name="Hit_state" type="Node2D" parent="Enemy/States"]
-script = ExtResource("10_pe17p")
+[node name="Cooldown" type="Timer" parent="Enemy/Timers"]
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Enemy"]
 material = SubResource("ShaderMaterial_c4qnd")
-position = Vector2(0, -5)
-sprite_frames = ExtResource("12_vx872")
-animation = &"death"
+position = Vector2(0, -7)
+scale = Vector2(1.05, 1.05)
+sprite_frames = ExtResource("7_wu1cv")
+animation = &"breathing"
 
 [node name="Animation" type="AnimationPlayer" parent="Enemy"]
 libraries = {
@@ -441,18 +440,20 @@ debug_color = Color(2.45467e-06, 0.634294, 0.4307, 0.42)
 
 [node name="Area" type="Area2D" parent="Enemy/Attack"]
 collision_layer = 16
-metadata/damage = 20
+metadata/bleeding_damage = 20
 
 [node name="Collider" type="CollisionShape2D" parent="Enemy/Attack/Area"]
-position = Vector2(46, 23)
-shape = SubResource("CapsuleShape2D_ohfhx")
+position = Vector2(29, 23)
+shape = SubResource("CapsuleShape2D_8d6cu")
 disabled = true
-debug_color = Color(0.920209, 0.21956, 0.451397, 0.42)
+debug_color = Color(0.827451, 0, 0.341176, 0)
 
-[node name="Fire" type="Node2D" parent="Enemy"]
-position = Vector2(45, 36)
+[node name="Spell" type="Marker2D" parent="Enemy"]
+position = Vector2(45, 41)
+gizmo_extents = 5.0
 
 [node name="Movement" type="Node2D" parent="Enemy"]
+visible = false
 
 [node name="Ground" type="RayCast2D" parent="Enemy/Movement"]
 position = Vector2(30, 5)
@@ -465,6 +466,7 @@ target_position = Vector2(-4.33922e-05, 12)
 collision_mask = 2
 
 [node name="Vision" type="Area2D" parent="Enemy"]
+visible = false
 collision_layer = 4
 
 [node name="Collider" type="CollisionShape2D" parent="Enemy/Vision"]
@@ -474,6 +476,7 @@ shape = SubResource("CapsuleShape2D_k0iaw")
 debug_color = Color(0.396078, 0.470588, 1, 0.054902)
 
 [node name="Detection" type="Area2D" parent="Enemy"]
+visible = false
 collision_layer = 4
 
 [node name="Collider" type="CollisionShape2D" parent="Enemy/Detection"]
@@ -482,6 +485,7 @@ shape = SubResource("RectangleShape2D_30t42")
 debug_color = Color(0.917647, 0.243137, 0.403922, 0.117647)
 
 [node name="Hitbox" type="Area2D" parent="Enemy"]
+visible = false
 collision_layer = 4
 collision_mask = 8
 
@@ -490,10 +494,8 @@ position = Vector2(0, 21)
 shape = SubResource("CapsuleShape2D_1ugl2")
 debug_color = Color(0, 0.6, 0.701961, 0.380392)
 
-[connection signal="timeout" from="Enemy/States/Idle_state/Turn_around" to="Enemy/States/Idle_state" method="_on_turn_around_timeout"]
-[connection signal="timeout" from="Enemy/States/Attack_state/Cooldown" to="Enemy/States/Attack_state" method="_on_cooldown_timeout"]
-[connection signal="timeout" from="Enemy/States/Stun_state/Stun" to="Enemy/States/Stun_state" method="_on_stun_timeout"]
-[connection signal="area_entered" from="Enemy/Attack/Area" to="Enemy/States/Stun_state" method="_on_area_area_entered"]
+[connection signal="timeout" from="Enemy/Timers/Turn_around" to="Enemy/Unique" method="_on_turn_around_timeout"]
+[connection signal="timeout" from="Enemy/Timers/Cooldown" to="Enemy/Unique" method="_on_cooldown_timeout"]
 [connection signal="body_entered" from="Enemy/Vision" to="Enemy" method="_on_vision_det_body_entered"]
 [connection signal="body_exited" from="Enemy/Vision" to="Enemy" method="_on_vision_det_body_exited"]
 [connection signal="body_entered" from="Enemy/Detection" to="Enemy" method="_on_attacker_det_body_entered"]

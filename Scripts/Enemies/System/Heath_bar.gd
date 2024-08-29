@@ -1,7 +1,7 @@
 extends TextureProgressBar
 
 # Imports
-@onready var HP: float = $"../../..".HEALTH
+@onready var HP: float = $"../../..".Health
 @onready var HP_MAX: float = HP
 @onready var sub_bar: TextureProgressBar = $sub_bar
 @onready var HP_node: Node2D = $"../.."

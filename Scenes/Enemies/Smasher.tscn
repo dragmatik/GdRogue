@@ -1,21 +1,15 @@
-[gd_scene load_steps=31 format=3 uid="uid://bdv5h6fjav3v6"]
+[gd_scene load_steps=25 format=3 uid="uid://bdv5h6fjav3v6"]
 
-[ext_resource type="Texture2D" uid="uid://bx6v3xo8gvwtt" path="res://Sprites/Lighting/light.png" id="1_85odm"]
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Smasher/Smasher.gd" id="1_pchjo"]
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Smasher/Default_States/D_Idle_state.gd" id="4_8jcu3"]
-[ext_resource type="PackedScene" uid="uid://caav3i30vocuh" path="res://Scenes/Enemies/Health_bar.tscn" id="4_p35y2"]
-[ext_resource type="Script" path="res://Scripts/Enemies/System/Damage_handler.gd" id="4_pn4ln"]
-[ext_resource type="Shader" path="res://Shaders/Flash.gdshader" id="4_tlwdy"]
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Smasher/Default_States/D_Chase_state.gd" id="5_ft7qv"]
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Smasher/Default_States/D_Attack_state.gd" id="6_1iyeb"]
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Smasher/Default_States/D_Death_state.gd" id="7_y8wlu"]
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Smasher/Default_States/D_Stun_state.gd" id="8_p0e8l"]
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Smasher/Default_States/D_Hit_state.gd" id="9_rr5od"]
-[ext_resource type="SpriteFrames" uid="uid://es4a2ptcddil" path="res://Sprites/Enemies/Smasher/boss_treatoni.tres" id="12_c3wl7"]
-[ext_resource type="PackedScene" uid="uid://bjnubgmxlo2y6" path="res://Scenes/VFX/Particle_emitter.tscn" id="13_14k0g"]
+[ext_resource type="Script" path="res://Scripts/Enemies/System/Common.gd" id="1_ogllj"]
+[ext_resource type="Resource" uid="uid://c056hcdn8t6gl" path="res://Resources/Enemies_stats/ground.tres" id="2_bsdod"]
+[ext_resource type="Script" path="res://Scripts/Enemies/System/Damage_handler.gd" id="3_uhn0o"]
+[ext_resource type="PackedScene" uid="uid://caav3i30vocuh" path="res://Scenes/Enemies/Health_bar.tscn" id="4_ta7nw"]
+[ext_resource type="Script" path="res://Scripts/Enemies/smasher.gd" id="5_6u34s"]
+[ext_resource type="Shader" path="res://Shaders/Flash.gdshader" id="6_n8agy"]
+[ext_resource type="SpriteFrames" uid="uid://es4a2ptcddil" path="res://Sprites/Enemies/Smasher/boss_treatoni.tres" id="7_gj37h"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c4qnd"]
-shader = ExtResource("4_tlwdy")
+shader = ExtResource("6_n8agy")
 shader_parameter/Smooth = true
 shader_parameter/EnableOutline = false
 shader_parameter/width = 8.0
@@ -106,11 +100,11 @@ tracks/2/keys = {
 tracks/3/type = "method"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Particle_effects")
+tracks/3/path = NodePath("Unique")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.8004, 1.0672, 1.5341),
+"times": PackedFloat32Array(0.8, 1.06667, 1.53333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [],
@@ -243,6 +237,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [0, 1, 2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Attack/Area/Collider:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_74yob"]
@@ -396,57 +402,30 @@ height = 48.0
 
 [node name="Smasher" type="Node2D"]
 
-[node name="TestModulate" type="CanvasModulate" parent="."]
-visible = false
-color = Color(0.408329, 0.408329, 0.408329, 1)
-
-[node name="TestLight" type="PointLight2D" parent="."]
-visible = false
-position = Vector2(-37, -17)
-texture = ExtResource("1_85odm")
-texture_scale = 0.5
-
 [node name="Enemy" type="CharacterBody2D" parent="."]
 collision_layer = 4
 collision_mask = 2
-script = ExtResource("1_pchjo")
+script = ExtResource("1_ogllj")
+stats = ExtResource("2_bsdod")
 
 [node name="HP" type="Node2D" parent="Enemy"]
 position = Vector2(0, -9)
-script = ExtResource("4_pn4ln")
+script = ExtResource("3_uhn0o")
 
-[node name="Health" parent="Enemy/HP" instance=ExtResource("4_p35y2")]
+[node name="Health" parent="Enemy/HP" instance=ExtResource("4_ta7nw")]
 
-[node name="States" type="Node2D" parent="Enemy"]
+[node name="Unique" type="Node" parent="Enemy"]
+script = ExtResource("5_6u34s")
 
-[node name="Idle_state" type="Node2D" parent="Enemy/States"]
-script = ExtResource("4_8jcu3")
+[node name="Timers" type="Node" parent="Enemy"]
 
-[node name="Turn_around" type="Timer" parent="Enemy/States/Idle_state"]
+[node name="Turn_around" type="Timer" parent="Enemy/Timers"]
 
-[node name="Chase_state" type="Node2D" parent="Enemy/States"]
-script = ExtResource("5_ft7qv")
-
-[node name="Attack_state" type="Node2D" parent="Enemy/States"]
-script = ExtResource("6_1iyeb")
-
-[node name="Cooldown" type="Timer" parent="Enemy/States/Attack_state"]
-
-[node name="Death_state" type="Node2D" parent="Enemy/States"]
-script = ExtResource("7_y8wlu")
-
-[node name="Stun_state" type="Node2D" parent="Enemy/States"]
-script = ExtResource("8_p0e8l")
-
-[node name="Stun" type="Timer" parent="Enemy/States/Stun_state"]
-one_shot = true
-
-[node name="Hit_state" type="Node2D" parent="Enemy/States"]
-script = ExtResource("9_rr5od")
+[node name="Cooldown" type="Timer" parent="Enemy/Timers"]
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Enemy"]
 material = SubResource("ShaderMaterial_c4qnd")
-sprite_frames = ExtResource("12_c3wl7")
+sprite_frames = ExtResource("7_gj37h")
 animation = &"breathing"
 
 [node name="Animation" type="AnimationPlayer" parent="Enemy"]
@@ -520,12 +499,8 @@ position = Vector2(0, 21)
 shape = SubResource("CapsuleShape2D_1ugl2")
 debug_color = Color(0, 0.6, 0.701961, 0.380392)
 
-[node name="Particle_effects" parent="Enemy" instance=ExtResource("13_14k0g")]
-
-[connection signal="timeout" from="Enemy/States/Idle_state/Turn_around" to="Enemy/States/Idle_state" method="_on_turn_around_timeout"]
-[connection signal="timeout" from="Enemy/States/Attack_state/Cooldown" to="Enemy/States/Attack_state" method="_on_cooldown_timeout"]
-[connection signal="timeout" from="Enemy/States/Stun_state/Stun" to="Enemy/States/Stun_state" method="_on_stun_timeout"]
-[connection signal="area_entered" from="Enemy/Attack/Area" to="Enemy/States/Stun_state" method="_on_area_area_entered"]
+[connection signal="timeout" from="Enemy/Timers/Turn_around" to="Enemy/Unique" method="_on_turn_around_timeout"]
+[connection signal="timeout" from="Enemy/Timers/Cooldown" to="Enemy/Unique" method="_on_cooldown_timeout"]
 [connection signal="body_entered" from="Enemy/Vision" to="Enemy" method="_on_vision_det_body_entered"]
 [connection signal="body_exited" from="Enemy/Vision" to="Enemy" method="_on_vision_det_body_exited"]
 [connection signal="body_entered" from="Enemy/Detection" to="Enemy" method="_on_attacker_det_body_entered"]

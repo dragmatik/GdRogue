@@ -1,24 +1,18 @@
-[gd_scene load_steps=30 format=3 uid="uid://y3g61qind5r2"]
+[gd_scene load_steps=24 format=3 uid="uid://vfgcrrioj6r7"]
 
-[ext_resource type="Texture2D" uid="uid://bx6v3xo8gvwtt" path="res://Sprites/Lighting/light.png" id="1_gw3b8"]
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Earthshaker/Earthshaker.gd" id="2_iwjfj"]
-[ext_resource type="Script" path="res://Scripts/Enemies/System/Damage_handler.gd" id="3_octrl"]
-[ext_resource type="PackedScene" uid="uid://caav3i30vocuh" path="res://Scenes/Enemies/Health_bar.tscn" id="4_44wbx"]
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Earthshaker/Earthshaker_States/E_Idle_state.gd" id="5_wphej"]
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Earthshaker/Earthshaker_States/E_Chase_state.gd" id="6_23kv4"]
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Earthshaker/Earthshaker_States/E_Attack_state.gd" id="7_4bjrh"]
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Earthshaker/Earthshaker_States/E_Death_state.gd" id="8_ivg04"]
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Earthshaker/Earthshaker_States/E_Stun_state.gd" id="9_7n6a3"]
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Earthshaker/Earthshaker_States/E_Hit_state.gd" id="10_m5q0b"]
-[ext_resource type="Shader" path="res://Shaders/Flash.gdshader" id="11_4sy58"]
-[ext_resource type="SpriteFrames" uid="uid://b3odbs5klmo35" path="res://Sprites/Enemies/Earthshaker/neutral_boulderhurler.tres" id="12_278rq"]
-[ext_resource type="PackedScene" uid="uid://bjnubgmxlo2y6" path="res://Scenes/VFX/Particle_emitter.tscn" id="13_lowkh"]
+[ext_resource type="Script" path="res://Scripts/Enemies/System/Common.gd" id="1_mpd4t"]
+[ext_resource type="Resource" uid="uid://c056hcdn8t6gl" path="res://Resources/Enemies_stats/ground.tres" id="2_o7tkd"]
+[ext_resource type="Script" path="res://Scripts/Enemies/System/Damage_handler.gd" id="3_83uws"]
+[ext_resource type="PackedScene" uid="uid://caav3i30vocuh" path="res://Scenes/Enemies/Health_bar.tscn" id="4_ulkbx"]
+[ext_resource type="Script" path="res://Scripts/Enemies/earthshaker.gd" id="5_0pjtu"]
+[ext_resource type="Shader" path="res://Shaders/Flash.gdshader" id="6_etcir"]
+[ext_resource type="SpriteFrames" uid="uid://b3odbs5klmo35" path="res://Sprites/Enemies/Earthshaker/neutral_boulderhurler.tres" id="7_ns68r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c4qnd"]
-shader = ExtResource("11_4sy58")
+shader = ExtResource("6_etcir")
 shader_parameter/Smooth = true
 shader_parameter/EnableOutline = false
-shader_parameter/width = 10.0
+shader_parameter/width = 8.0
 shader_parameter/outline_color = Vector4(1, 0, 0, 0.05)
 shader_parameter/selection_color = Vector4(1, 1, 1, 1)
 shader_parameter/color_intensity = 0.0
@@ -29,10 +23,22 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"breathing"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -70,36 +76,38 @@ tracks/1/keys = {
 tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".")
+tracks/2/path = NodePath("Unique")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.8),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.733333, 0.8),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"Create"
+"method": &"Get_ground_particles"
+}, {
+"args": [],
+"method": &"shoot"
 }]
 }
 tracks/3/type = "method"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Particle_effects")
+tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.7337),
+"times": PackedFloat32Array(0.733333),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"Get_ground_particles_2"
+"method": &"shake_ground"
 }]
 }
 
 [sub_resource type="Animation" id="Animation_f3myt"]
 resource_name = "breathing"
 length = 0.93334
-loop_mode = 1
 step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -149,7 +157,7 @@ tracks/1/path = NodePath("Sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.533333, 0.6, 0.666667, 0.733333, 0.8, 0.866667, 0.933333, 1),
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.533333, 0.6, 0.666667, 0.733334, 0.8, 0.866667, 0.933334, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
@@ -337,67 +345,41 @@ radius = 24.0
 height = 324.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_30t42"]
-size = Vector2(46.25, 42.125)
+size = Vector2(124.125, 42.125)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1ugl2"]
 radius = 24.0
 height = 48.0
 
-[node name="Earthshaker" type="Node2D"]
-
-[node name="TestModulate" type="CanvasModulate" parent="."]
-visible = false
-color = Color(0.408329, 0.408329, 0.408329, 1)
-
-[node name="TestLight" type="PointLight2D" parent="."]
-visible = false
-position = Vector2(-37, -17)
-texture = ExtResource("1_gw3b8")
-texture_scale = 0.5
+[node name="Smasher" type="Node2D"]
 
 [node name="Enemy" type="CharacterBody2D" parent="."]
 collision_layer = 4
 collision_mask = 2
-script = ExtResource("2_iwjfj")
+script = ExtResource("1_mpd4t")
+stats = ExtResource("2_o7tkd")
 
 [node name="HP" type="Node2D" parent="Enemy"]
 position = Vector2(0, -9)
-script = ExtResource("3_octrl")
+script = ExtResource("3_83uws")
 
-[node name="Health" parent="Enemy/HP" instance=ExtResource("4_44wbx")]
+[node name="Health" parent="Enemy/HP" instance=ExtResource("4_ulkbx")]
 
-[node name="States" type="Node2D" parent="Enemy"]
+[node name="Unique" type="Node" parent="Enemy"]
+script = ExtResource("5_0pjtu")
 
-[node name="Idle_state" type="Node2D" parent="Enemy/States"]
-script = ExtResource("5_wphej")
+[node name="Timers" type="Node" parent="Enemy"]
 
-[node name="Turn_around" type="Timer" parent="Enemy/States/Idle_state"]
+[node name="Turn_around" type="Timer" parent="Enemy/Timers"]
 
-[node name="Chase_state" type="Node2D" parent="Enemy/States"]
-script = ExtResource("6_23kv4")
-
-[node name="Attack_state" type="Node2D" parent="Enemy/States"]
-script = ExtResource("7_4bjrh")
-
-[node name="Cooldown" type="Timer" parent="Enemy/States/Attack_state"]
-
-[node name="Death_state" type="Node2D" parent="Enemy/States"]
-script = ExtResource("8_ivg04")
-
-[node name="Stun_state" type="Node2D" parent="Enemy/States"]
-script = ExtResource("9_7n6a3")
-
-[node name="Stun" type="Timer" parent="Enemy/States/Stun_state"]
-one_shot = true
-
-[node name="Hit_state" type="Node2D" parent="Enemy/States"]
-script = ExtResource("10_m5q0b")
+[node name="Cooldown" type="Timer" parent="Enemy/Timers"]
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Enemy"]
 material = SubResource("ShaderMaterial_c4qnd")
-position = Vector2(0, 10)
-sprite_frames = ExtResource("12_278rq")
-animation = &"death"
+position = Vector2(0, 8)
+scale = Vector2(1.05, 1.05)
+sprite_frames = ExtResource("7_ns68r")
+animation = &"breathing"
 
 [node name="Animation" type="AnimationPlayer" parent="Enemy"]
 libraries = {
@@ -414,10 +396,12 @@ position = Vector2(0, 20.875)
 shape = SubResource("RectangleShape2D_2r4kg")
 debug_color = Color(2.45467e-06, 0.634294, 0.4307, 0.42)
 
-[node name="Rock" type="Node2D" parent="Enemy"]
-position = Vector2(35, 34)
+[node name="Attack" type="Marker2D" parent="Enemy"]
+position = Vector2(23, 32)
+gizmo_extents = 5.0
 
 [node name="Movement" type="Node2D" parent="Enemy"]
+visible = false
 
 [node name="Ground" type="RayCast2D" parent="Enemy/Movement"]
 position = Vector2(30, 5)
@@ -442,11 +426,12 @@ debug_color = Color(0.396078, 0.470588, 1, 0.054902)
 collision_layer = 4
 
 [node name="Collider" type="CollisionShape2D" parent="Enemy/Detection"]
-position = Vector2(25, 20.875)
+position = Vector2(65, 21)
 shape = SubResource("RectangleShape2D_30t42")
 debug_color = Color(0.917647, 0.243137, 0.403922, 0.117647)
 
 [node name="Hitbox" type="Area2D" parent="Enemy"]
+visible = false
 collision_layer = 4
 collision_mask = 8
 
@@ -455,11 +440,8 @@ position = Vector2(0, 21)
 shape = SubResource("CapsuleShape2D_1ugl2")
 debug_color = Color(0, 0.6, 0.701961, 0.380392)
 
-[node name="Particle_effects" parent="Enemy" instance=ExtResource("13_lowkh")]
-
-[connection signal="timeout" from="Enemy/States/Idle_state/Turn_around" to="Enemy/States/Idle_state" method="_on_turn_around_timeout"]
-[connection signal="timeout" from="Enemy/States/Attack_state/Cooldown" to="Enemy/States/Attack_state" method="_on_cooldown_timeout"]
-[connection signal="timeout" from="Enemy/States/Stun_state/Stun" to="Enemy/States/Stun_state" method="_on_stun_timeout"]
+[connection signal="timeout" from="Enemy/Timers/Turn_around" to="Enemy/Unique" method="_on_turn_around_timeout"]
+[connection signal="timeout" from="Enemy/Timers/Cooldown" to="Enemy/Unique" method="_on_cooldown_timeout"]
 [connection signal="body_entered" from="Enemy/Vision" to="Enemy" method="_on_vision_det_body_entered"]
 [connection signal="body_exited" from="Enemy/Vision" to="Enemy" method="_on_vision_det_body_exited"]
 [connection signal="body_entered" from="Enemy/Detection" to="Enemy" method="_on_attacker_det_body_entered"]

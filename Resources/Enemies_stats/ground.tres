@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Enemy" load_steps=2 format=3 uid="uid://c056hcdn8t6gl"]
+
+[ext_resource type="Script" path="res://Resources/Enemies_stats/1_enemy_stats.gd" id="1_dsm25"]
+
+[resource]
+script = ExtResource("1_dsm25")
+health = 1000.0
+speed = 1.0
+speed_idle = 80.0
+attack_cooldown = 1.5

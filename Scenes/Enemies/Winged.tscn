@@ -1,23 +1,18 @@
-[gd_scene load_steps=29 format=3 uid="uid://dna2nyq7c1533"]
+[gd_scene load_steps=24 format=3 uid="uid://c5fg2f3rh55nd"]
 
-[ext_resource type="Texture2D" uid="uid://bx6v3xo8gvwtt" path="res://Sprites/Lighting/light.png" id="1_4gnvk"]
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Winged/Winged.gd" id="2_8bf1w"]
-[ext_resource type="Script" path="res://Scripts/Enemies/System/Damage_handler.gd" id="3_ahwx7"]
-[ext_resource type="PackedScene" uid="uid://caav3i30vocuh" path="res://Scenes/Enemies/Health_bar.tscn" id="4_62vy8"]
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Winged/Winged_States/W_Idle_state.gd" id="5_22ltx"]
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Winged/Winged_States/W_Chase_state.gd" id="6_lqwkx"]
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Winged/Winged_States/W_Attack_state.gd" id="7_ys8rm"]
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Winged/Winged_States/W_Death_state.gd" id="8_thsjq"]
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Winged/Winged_States/W_Stun_state.gd" id="9_25phg"]
-[ext_resource type="Script" path="res://Scripts/Enemies/En_Winged/Winged_States/W_Hit_state.gd" id="10_ekdmr"]
-[ext_resource type="Shader" path="res://Shaders/Flash.gdshader" id="11_6nbpv"]
-[ext_resource type="SpriteFrames" uid="uid://tq8m6en55k3u" path="res://Sprites/Enemies/Winged/f3_windshriek.tres" id="12_016lf"]
+[ext_resource type="Script" path="res://Scripts/Enemies/System/Common.gd" id="1_ve7sn"]
+[ext_resource type="Resource" uid="uid://c3ptni3p8xw84" path="res://Resources/Enemies_stats/air.tres" id="2_okx6h"]
+[ext_resource type="Script" path="res://Scripts/Enemies/System/Damage_handler.gd" id="3_ra74g"]
+[ext_resource type="PackedScene" uid="uid://caav3i30vocuh" path="res://Scenes/Enemies/Health_bar.tscn" id="4_2gbax"]
+[ext_resource type="Script" path="res://Scripts/Enemies/winged.gd" id="5_2tgpa"]
+[ext_resource type="Shader" path="res://Shaders/Flash.gdshader" id="6_7dy4j"]
+[ext_resource type="SpriteFrames" uid="uid://tq8m6en55k3u" path="res://Sprites/Enemies/Winged/f3_windshriek.tres" id="7_kgbax"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mhrr1"]
-shader = ExtResource("11_6nbpv")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c4qnd"]
+shader = ExtResource("6_7dy4j")
 shader_parameter/Smooth = true
 shader_parameter/EnableOutline = false
-shader_parameter/width = 10.0
+shader_parameter/width = 8.0
 shader_parameter/outline_color = Vector4(1, 0, 0, 0.05)
 shader_parameter/selection_color = Vector4(1, 1, 1, 1)
 shader_parameter/color_intensity = 0.0
@@ -81,11 +76,11 @@ tracks/1/keys = {
 tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".")
+tracks/2/path = NodePath("Unique")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.466667),
+"times": PackedFloat32Array(0.533333),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -96,7 +91,6 @@ tracks/2/keys = {
 [sub_resource type="Animation" id="Animation_f3myt"]
 resource_name = "breathing"
 length = 0.93334
-loop_mode = 1
 step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -198,7 +192,6 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_74yob"]
 resource_name = "idle"
 length = 1.06667
-loop_mode = 1
 step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -328,72 +321,45 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2r4kg"]
-size = Vector2(28, 27)
+size = Vector2(28, 19)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xvcuf"]
-radius = 134.034
+[sub_resource type="CircleShape2D" id="CircleShape2D_3x1qu"]
+radius = 180.011
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8ubbj"]
-radius = 33.0
-height = 220.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_scgep"]
+radius = 51.0
+height = 276.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1ugl2"]
-radius = 26.0
-height = 52.0
+radius = 24.0
+height = 48.0
 
-[node name="Winged" type="Node2D"]
-
-[node name="TestModulate" type="CanvasModulate" parent="."]
-visible = false
-color = Color(0.408329, 0.408329, 0.408329, 1)
-
-[node name="TestLight" type="PointLight2D" parent="."]
-visible = false
-position = Vector2(-33, -19)
-texture = ExtResource("1_4gnvk")
-texture_scale = 0.5
+[node name="Smasher" type="Node2D"]
 
 [node name="Enemy" type="CharacterBody2D" parent="."]
 collision_layer = 4
 collision_mask = 2
-script = ExtResource("2_8bf1w")
+script = ExtResource("1_ve7sn")
+stats = ExtResource("2_okx6h")
 
 [node name="HP" type="Node2D" parent="Enemy"]
-position = Vector2(0, -26)
-script = ExtResource("3_ahwx7")
+position = Vector2(0, -9)
+script = ExtResource("3_ra74g")
 
-[node name="Health" parent="Enemy/HP" instance=ExtResource("4_62vy8")]
+[node name="Health" parent="Enemy/HP" instance=ExtResource("4_2gbax")]
 
-[node name="States" type="Node2D" parent="Enemy"]
+[node name="Unique" type="Node" parent="Enemy"]
+script = ExtResource("5_2tgpa")
 
-[node name="Idle_state" type="Node2D" parent="Enemy/States"]
-script = ExtResource("5_22ltx")
+[node name="Timers" type="Node" parent="Enemy"]
 
-[node name="Turn_around" type="Timer" parent="Enemy/States/Idle_state"]
+[node name="Turn_around" type="Timer" parent="Enemy/Timers"]
 
-[node name="Chase_state" type="Node2D" parent="Enemy/States"]
-script = ExtResource("6_lqwkx")
-
-[node name="Attack_state" type="Node2D" parent="Enemy/States"]
-script = ExtResource("7_ys8rm")
-
-[node name="Cooldown" type="Timer" parent="Enemy/States/Attack_state"]
-
-[node name="Death_state" type="Node2D" parent="Enemy/States"]
-script = ExtResource("8_thsjq")
-
-[node name="Stun_state" type="Node2D" parent="Enemy/States"]
-script = ExtResource("9_25phg")
-
-[node name="Stun" type="Timer" parent="Enemy/States/Stun_state"]
-one_shot = true
-
-[node name="Hit_state" type="Node2D" parent="Enemy/States"]
-script = ExtResource("10_ekdmr")
+[node name="Cooldown" type="Timer" parent="Enemy/Timers"]
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Enemy"]
-material = SubResource("ShaderMaterial_mhrr1")
-sprite_frames = ExtResource("12_016lf")
+material = SubResource("ShaderMaterial_c4qnd")
+sprite_frames = ExtResource("7_kgbax")
 animation = &"breathing"
 
 [node name="Animation" type="AnimationPlayer" parent="Enemy"]
@@ -407,17 +373,22 @@ libraries = {
 }
 
 [node name="Collider" type="CollisionShape2D" parent="Enemy"]
-position = Vector2(0, 13.5)
+visible = false
+position = Vector2(0, 18)
 shape = SubResource("RectangleShape2D_2r4kg")
 debug_color = Color(2.45467e-06, 0.634294, 0.4307, 0.42)
 
-[node name="Projectile" type="Node2D" parent="Enemy"]
-position = Vector2(10, 8)
+[node name="Attack" type="Marker2D" parent="Enemy"]
+position = Vector2(7, 1)
 
 [node name="Movement" type="Node2D" parent="Enemy"]
 
+[node name="Ground" type="RayCast2D" parent="Enemy/Movement"]
+target_position = Vector2(0, 67)
+collision_mask = 2
+
 [node name="Wall" type="RayCast2D" parent="Enemy/Movement"]
-position = Vector2(30, 0)
+position = Vector2(30, 5)
 rotation = -1.5708
 target_position = Vector2(-4.33922e-05, 12)
 collision_mask = 2
@@ -426,17 +397,16 @@ collision_mask = 2
 collision_layer = 4
 
 [node name="Collider" type="CollisionShape2D" parent="Enemy/Vision"]
-position = Vector2(0, 21)
 rotation = 1.5708
-shape = SubResource("CircleShape2D_xvcuf")
+shape = SubResource("CircleShape2D_3x1qu")
 debug_color = Color(0.396078, 0.470588, 1, 0.054902)
 
 [node name="Detection" type="Area2D" parent="Enemy"]
 collision_layer = 4
 
 [node name="Collider" type="CollisionShape2D" parent="Enemy/Detection"]
-position = Vector2(35, 21)
-shape = SubResource("CapsuleShape2D_8ubbj")
+position = Vector2(55, 0)
+shape = SubResource("CapsuleShape2D_scgep")
 debug_color = Color(0.917647, 0.243137, 0.403922, 0.117647)
 
 [node name="Hitbox" type="Area2D" parent="Enemy"]
@@ -447,13 +417,8 @@ collision_mask = 8
 shape = SubResource("CapsuleShape2D_1ugl2")
 debug_color = Color(0, 0.6, 0.701961, 0.380392)
 
-[node name="Height" type="RayCast2D" parent="Enemy"]
-target_position = Vector2(0, 85)
-collision_mask = 2
-
-[connection signal="timeout" from="Enemy/States/Idle_state/Turn_around" to="Enemy/States/Idle_state" method="_on_turn_around_timeout"]
-[connection signal="timeout" from="Enemy/States/Attack_state/Cooldown" to="Enemy/States/Attack_state" method="_on_cooldown_timeout"]
-[connection signal="timeout" from="Enemy/States/Stun_state/Stun" to="Enemy/States/Stun_state" method="_on_stun_timeout"]
+[connection signal="timeout" from="Enemy/Timers/Turn_around" to="Enemy/Unique" method="_on_turn_around_timeout"]
+[connection signal="timeout" from="Enemy/Timers/Cooldown" to="Enemy/Unique" method="_on_cooldown_timeout"]
 [connection signal="body_entered" from="Enemy/Vision" to="Enemy" method="_on_vision_det_body_entered"]
 [connection signal="body_exited" from="Enemy/Vision" to="Enemy" method="_on_vision_det_body_exited"]
 [connection signal="body_entered" from="Enemy/Detection" to="Enemy" method="_on_attacker_det_body_entered"]

@@ -1,0 +1,156 @@
+extends Node
+
+# Imports
+@onready var main: CharacterBody2D = $".."
+@onready var sprite: AnimatedSprite2D = $"../Sprite"
+@onready var animation: AnimationPlayer = $"../Animation"
+@onready var attack_marker: Marker2D = $"../Attack"
+@onready var detection_collider: CollisionShape2D = $"../Detection/Collider"
+@onready var ground: RayCast2D = $"../Movement/Ground"
+@onready var wall: RayCast2D = $"../Movement/Wall"
+@onready var cooldown: Timer = $"../Timers/Cooldown"
+@onready var turn_around: Timer = $"../Timers/Turn_around"
+
+# Variables & Bools
+var can_attack: bool = true
+var direction: float = 0.0
+var path: int = 1
+var is_idle: bool = false
+
+# Flip character right
+func flip_right() -> void:
+	sprite.flip_h = false  # Don't flip if moving right
+	wall.rotation = deg_to_rad(-90)
+	wall.position.x = 30
+	ground.position.x = 30
+	detection_collider.position.x = 132
+	attack_marker.position.x = 6
+
+# Flip character left
+func flip_left() -> void:
+	sprite.flip_h = true  # Flip if moving left
+	wall.rotation = deg_to_rad(90)
+	wall.position.x = -30
+	ground.position.x = -30
+	detection_collider.position.x = -132
+	attack_marker.position.x = -6
+
+# Attack function
+func attack(delta: float) -> void:
+	# Attack state behavior
+	if not main.is_on_floor():
+		main.gravity_func(delta)
+	if can_attack:
+		animation.play("attack")
+		await animation.animation_finished
+		can_attack = false
+		cooldown.start(main.attack_cooldown)
+	else:
+		animation.play("idle")
+	
+func _on_cooldown_timeout() -> void:
+	can_attack = true
+
+# Chase function
+func chase(delta: float) -> void:
+	# Movement state behavior
+	if not main.is_on_floor():
+		main.gravity_func(delta)
+	else:
+		main.ghost_maker(delta)
+		direction = main.player.global_position.x - sprite.global_position.x
+		main.velocity.x = direction * main.Speed
+		if direction > 0:
+			flip_right()
+		elif direction < 0:
+			flip_left()
+		else:
+			pass
+		animation.play("run")
+	main.move_and_slide()
+
+# Idle function
+func idle(delta: float) -> void:
+	if is_idle:
+		animation.play("idle")
+		return
+	if not main.is_on_floor():
+		main.gravity_func(delta)
+	else:
+		main.velocity.y = 0
+		main.velocity.x = path * main.Speed * main.Speed_idle
+		if wall.is_colliding() or not ground.is_colliding():
+			is_idle = true
+			turn_around.start(2)
+		if path > 0:
+			flip_right()
+		elif path < 0:
+			flip_left()
+		animation.play("run")
+	main.move_and_slide()
+	
+func _on_turn_around_timeout() -> void:
+	if wall.is_colliding() or not ground.is_colliding():
+		path *= -1
+	is_idle = false
+
+# Create Spell
+var bolt: PackedScene = preload("res://Scenes/Enemies/Attacks/Lightning.tscn")
+var warning: PackedScene = preload("res://Scenes/Enemies/Attacks/Lightning_2.tscn")
+var player_target_x
+var player_target_y
+
+func create_spell() -> void:
+	if player_target_x and player_target_y:
+		# Original bolt
+		var bolt_instance: Node2D = bolt.instantiate()
+		get_parent().add_child(bolt_instance)
+		bolt_instance.global_position.x = player_target_x
+		bolt_instance.global_position.y = player_target_y
+		# Bolt to the right
+		var bolt_instance_right: Node2D = bolt.instantiate()
+		get_parent().add_child(bolt_instance_right)
+		bolt_instance_right.global_position.x = player_target_x + 80
+		bolt_instance_right.global_position.y = player_target_y
+		# Bolt to the left
+		var bolt_instance_left: Node2D = bolt.instantiate()
+		get_parent().add_child(bolt_instance_left)
+		bolt_instance_left.global_position.x = player_target_x - 80
+		bolt_instance_left.global_position.y = player_target_y
+	# So that bolts don't spawn without warning after memorising the previous values
+	player_target_x = null
+	player_target_y = null
+
+func create_warning() -> void:
+	if main.player:
+		if main.player.is_on_floor():
+			# Original warning
+			var warning_instance: Node2D = warning.instantiate()
+			get_parent().add_child(warning_instance)
+			warning_instance.global_position.x = main.player.global_position.x
+			warning_instance.global_position.y = main.player.global_position.y + 28
+			player_target_x = warning_instance.global_position.x
+			player_target_y = warning_instance.global_position.y
+			# Warning to the right
+			var warning_instance_right: Node2D = warning.instantiate()
+			get_parent().add_child(warning_instance_right)
+			warning_instance_right.global_position.x = main.player.global_position.x + 80
+			warning_instance_right.global_position.y = main.player.global_position.y + 28
+			# Warning to the left
+			var warning_instance_left: Node2D = warning.instantiate()
+			get_parent().add_child(warning_instance_left)
+			warning_instance_left.global_position.x = main.player.global_position.x - 80
+			warning_instance_left.global_position.y = main.player.global_position.y + 28
+
+# Ground Impact no attack collider
+func Get_ground_particles() -> void:
+	var impact_scene: PackedScene = preload("res://Scenes/VFX/Particles/Ground_Particles.tscn")
+	var impact: Node2D = impact_scene.instantiate()
+	get_parent().add_child(impact)
+	if direction > 0:
+		impact.global_position.x = attack_marker.global_position.x
+	elif direction < 0:
+		impact.global_position.x = attack_marker.global_position.x
+	else:
+		pass # Get last direction
+	impact.global_position.y = attack_marker.global_position.y
