@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://bdv5h6fjav3v6"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/System/Common.gd" id="1_ogllj"]
-[ext_resource type="Resource" uid="uid://c056hcdn8t6gl" path="res://Resources/Enemies_stats/ground.tres" id="2_bsdod"]
+[ext_resource type="Resource" uid="uid://c056hcdn8t6gl" path="res://Resources/Enemy_stats/ground.tres" id="2_bsdod"]
 [ext_resource type="Script" path="res://Scripts/Enemies/System/Damage_handler.gd" id="3_uhn0o"]
 [ext_resource type="PackedScene" uid="uid://caav3i30vocuh" path="res://Scenes/Enemies/Health_bar.tscn" id="4_ta7nw"]
 [ext_resource type="Script" path="res://Scripts/Enemies/smasher.gd" id="5_6u34s"]

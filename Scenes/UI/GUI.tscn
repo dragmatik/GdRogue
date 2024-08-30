@@ -135,6 +135,16 @@ stretch_margin_right = 5
 stretch_margin_bottom = 5
 texture_over = ExtResource("7_fmun6")
 
+[node name="Cooldown_value" type="Label" parent="."]
+offset_left = 88.0
+offset_top = 913.0
+offset_right = 136.0
+offset_bottom = 961.0
+text = "0"
+label_settings = ExtResource("4_xgfq8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Duration_bar" type="TextureProgressBar" parent="."]
 anchors_preset = 8
 anchor_left = 0.5

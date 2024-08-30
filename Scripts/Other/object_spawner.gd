@@ -1,13 +1,13 @@
 extends Node2D
 
 # Define the preloaded scenes with static typing
-var enemy1: PackedScene = preload("res://Scenes/Enemies/smasher.tscn")
-var enemy2: PackedScene = preload("res://Scenes/Enemies/ranger.tscn")
-var enemy3: PackedScene = preload("res://Scenes/Enemies/winged.tscn")
-var enemy4: PackedScene = preload("res://Scenes/Enemies/mage.tscn")
-var enemy5: PackedScene = preload("res://Scenes/Enemies/earthshaker.tscn")
-var enemy6: PackedScene = preload("res://Scenes/Enemies/necro.tscn")
-var enemy7: PackedScene = preload("res://Scenes/Enemies/lancer.tscn")
+var enemy1: PackedScene = preload("res://Scenes/Enemies/Smasher.tscn")
+var enemy2: PackedScene = preload("res://Scenes/Enemies/Ranger.tscn")
+var enemy3: PackedScene = preload("res://Scenes/Enemies/Winged.tscn")
+var enemy4: PackedScene = preload("res://Scenes/Enemies/Mage.tscn")
+var enemy5: PackedScene = preload("res://Scenes/Enemies/Earthshaker.tscn")
+var enemy6: PackedScene = preload("res://Scenes/Enemies/Necro.tscn")
+var enemy7: PackedScene = preload("res://Scenes/Enemies/Lancer.tscn")
 # var enemy7: PackedScene = preload("res://Scenes/Bosses/Boss_Prime.tscn")
 
 func _input(event: InputEvent) -> void:

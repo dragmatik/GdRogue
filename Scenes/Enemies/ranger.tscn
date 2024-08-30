@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Enemies/ranger.gd" id="1_7kj3y"]
 [ext_resource type="Script" path="res://Scripts/Enemies/System/Common.gd" id="1_hrg53"]
-[ext_resource type="Resource" uid="uid://c056hcdn8t6gl" path="res://Resources/Enemies_stats/ground.tres" id="2_nl0d1"]
+[ext_resource type="Resource" uid="uid://c056hcdn8t6gl" path="res://Resources/Enemy_stats/ground.tres" id="2_nl0d1"]
 [ext_resource type="Script" path="res://Scripts/Enemies/System/Damage_handler.gd" id="3_toefk"]
 [ext_resource type="PackedScene" uid="uid://caav3i30vocuh" path="res://Scenes/Enemies/Health_bar.tscn" id="4_4afcj"]
 [ext_resource type="Shader" path="res://Shaders/Flash.gdshader" id="6_md0n6"]

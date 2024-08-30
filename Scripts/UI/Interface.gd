@@ -7,6 +7,7 @@ extends Node
 @onready var Label_holder: Control = $Health_bar/Placeholder
 @onready var Health_Value_Label: Label = $Health_value
 @onready var Cooldown_Bar: TextureProgressBar = $Cooldown_bar
+@onready var Cooldown_Value_Label: Label = $Cooldown_value
 @onready var Duration_Bar: TextureProgressBar = $Duration_bar
 @onready var Ability_icon: TextureRect = %Icon_ability
 @onready var Coins_Label: Label = $Coins
@@ -38,6 +39,7 @@ func _process(_delta: float) -> void:
 	
 	# Skill cooldown timer
 	var cooldown: float = Ability_node.get_remaining_cooldown()
+	Cooldown_Value_Label.text = str("%0.1f" % Ability_node.get_remaining_cooldown())
 	var cooldown_time: float = Ability_node.get_cooldown_value() # get cooldown max value to subtract it
 	Cooldown_Bar.value = cooldown * Cooldown_Bar.max_value / cooldown_time
 	# Unfocus the skill icon during cooldown

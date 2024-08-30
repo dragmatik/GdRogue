@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=3 uid="uid://c5fg2f3rh55nd"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/System/Common.gd" id="1_ve7sn"]
-[ext_resource type="Resource" uid="uid://c3ptni3p8xw84" path="res://Resources/Enemies_stats/air.tres" id="2_okx6h"]
+[ext_resource type="Resource" uid="uid://c3ptni3p8xw84" path="res://Resources/Enemy_stats/air.tres" id="2_okx6h"]
 [ext_resource type="Script" path="res://Scripts/Enemies/System/Damage_handler.gd" id="3_ra74g"]
 [ext_resource type="PackedScene" uid="uid://caav3i30vocuh" path="res://Scenes/Enemies/Health_bar.tscn" id="4_2gbax"]
 [ext_resource type="Script" path="res://Scripts/Enemies/winged.gd" id="5_2tgpa"]

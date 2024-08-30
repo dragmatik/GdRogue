@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bfaxhjpiym61g" path="res://Scenes/Gameplay/Player.tscn" id="8_w5cdr"]
 [ext_resource type="Texture2D" uid="uid://dtx4h5juvp5xs" path="res://Sprites/Tilemap/Tiles.png" id="9_r6laf"]
 [ext_resource type="Texture2D" uid="uid://bx6v3xo8gvwtt" path="res://Sprites/Lighting/light.png" id="9_rrahx"]
-[ext_resource type="PackedScene" uid="uid://coaxwkfe7faya" path="res://Scenes/Enemies/dummy.tscn" id="10_dykbx"]
+[ext_resource type="PackedScene" uid="uid://coaxwkfe7faya" path="res://Scenes/Enemies/Dummy.tscn" id="10_dykbx"]
 [ext_resource type="PackedScene" uid="uid://b0if0p67xtw6p" path="res://Scenes/Items/Upg_Sharpner.tscn" id="12_0c3ts"]
 [ext_resource type="PackedScene" uid="uid://dp7ej7duelaw6" path="res://Scenes/Items/Cons_Potion.tscn" id="12_gnwfx"]
 

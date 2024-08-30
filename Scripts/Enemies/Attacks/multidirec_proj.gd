@@ -13,8 +13,8 @@ var current_speed: float = 60
 var expired: bool = false
 
 func _ready() -> void:
-	if $"..".player:
-		player_position = $"..".player.global_position
+	if $"../Enemy".player:
+		player_position = $"../Enemy".player.global_position
 	else:
 		player_position = Vector2.ZERO
 	proj_collider.disabled = false
@@ -23,8 +23,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if not expired:                                                                                                                              
 		# Update the player position (follow player)
-		if $"..".player:
-			player_position = $"..".player.global_position
+		if $"../Enemy".player:
+			player_position = $"../Enemy".player.global_position
 		# Move towards the direction
 		direction = (player_position - self.global_position).normalized()
 		self.global_position += direction * current_speed * delta

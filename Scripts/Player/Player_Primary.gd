@@ -15,8 +15,8 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 # Equipment loading
 @export var current_equipment: Equipment
-@onready var basic_sword: Equipment = preload("res://Resources/Equipment/Basic_sword.tres")
-@onready var golden_sword: Equipment = preload("res://Resources/Equipment/Golden_sword.tres")
+@onready var basic_sword: Equipment = preload("res://Resources/Equipment_class/Basic_sword.tres")
+@onready var golden_sword: Equipment = preload("res://Resources/Equipment_class/Golden_sword.tres")
 
 # Attack variables
 var is_attacking: bool = false

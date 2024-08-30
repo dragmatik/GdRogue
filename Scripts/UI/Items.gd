@@ -18,8 +18,8 @@ func _on_c_toggled(toggled_on: bool) -> void:
 	else:
 		SingletonBools.Is_Bolt = false
 
-@onready var fire_ball: Ability = preload("res://Resources/Abilities/fire_ball.tres")
-@onready var force_field: Ability = preload("res://Resources/Abilities/force_field.tres")
+@onready var fire_ball: Ability = preload("res://Resources/Ability_class/fire_ball.tres")
+@onready var force_field: Ability = preload("res://Resources/Ability_class/force_field.tres")
 @onready var ability_node: Node2D = $"../../../../Get_abilities"
 
 func _on_d_pressed() -> void:

@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="Enemy" load_steps=2 format=3 uid="uid://c3ptni3p8xw84"]
 
-[ext_resource type="Script" path="res://Resources/Enemies_stats/1_enemy_stats.gd" id="1_jvkq8"]
+[ext_resource type="Script" path="res://Resources/Enemy_stats/Enemy_stats.gd" id="1_utkvs"]
 
 [resource]
-script = ExtResource("1_jvkq8")
+script = ExtResource("1_utkvs")
 health = 1000.0
 speed = 60.0
-speed_idle = 200.0
+speed_idle = 80.0
 attack_cooldown = 1.5

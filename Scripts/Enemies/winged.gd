@@ -94,5 +94,5 @@ func _on_turn_around_timeout() -> void:
 func shoot() -> void:
 	var projectile: PackedScene = preload("res://Scenes/Enemies/Attacks/Projectile_xy.tscn")
 	var instance: Node2D = projectile.instantiate()
-	get_parent().add_child(instance)
+	get_parent().get_parent().add_child(instance)
 	instance.global_position = attack_marker.global_position
